@@ -23,8 +23,8 @@ env/
 *.sqlite3
 
 # Data (replace with your own CSVs)
-data/raw/*.csv
-data/registry.json
+data_pipeline/raw/*.csv
+data_pipeline/registry.json
 
 # Node
 node_modules/

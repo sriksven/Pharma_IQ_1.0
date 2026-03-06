@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     openai_api_key: str = ""
     upstash_redis_url: str = ""
     upstash_redis_token: str = ""
-    data_dir: str = "./data/raw"
+    data_dir: str = "./data_pipeline/raw"
     sqlite_db_path: str = "./pharma_iq.db"
     log_level: str = "INFO"
 

@@ -9,7 +9,7 @@ from datetime import datetime
 
 from data_pipeline.relationship_detector import detect_relationships
 
-REGISTRY_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "registry.json")
+REGISTRY_PATH = os.path.join(os.path.dirname(__file__), "registry.json")
 
 
 def build_registry(tables: list, data_dir: str) -> dict:
