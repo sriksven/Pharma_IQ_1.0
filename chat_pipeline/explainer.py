@@ -16,7 +16,7 @@ from ml_pipeline.monitoring.logger import JSONLogger
 
 logger = JSONLogger()
 
-GROQ_EXPLAIN_MODEL = "llama-3.3-70b-versatile"
+GROQ_EXPLAIN_MODEL = "llama-3.1-8b-instant"
 OPENAI_FALLBACK_MODEL = "gpt-4o"
 MAX_ROWS_IN_PROMPT = 20
 
