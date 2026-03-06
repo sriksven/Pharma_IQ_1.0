@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.label {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-weight: 500;
+}
+
+.tag {
+    font-size: 11px;
+    font-family: var(--mono);
+    padding: 2px 7px;
+    background: var(--surface-dim);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-muted);
+}

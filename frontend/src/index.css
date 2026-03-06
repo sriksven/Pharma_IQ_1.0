@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --surface-dim: #f0ede8;
+  --border: #e0dbd3;
+  --border-strong: #c8c2ba;
+  --text: #1a1814;
+  --text-muted: #6b6560;
+  --text-faint: #9e9891;
+  --accent: #2d5986;
+  --accent-light: #e8f0f9;
+  --success: #2d6a4f;
+  --warning: #7d5a1e;
+  --danger: #8b2020;
+  --font: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --radius: 4px;
+  --radius-md: 6px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 13px;
+  border: none;
+  background: none;
+}
+
+input, textarea {
+  font-family: var(--font);
+  font-size: 14px;
+}
+
+code, pre {
+  font-family: var(--mono);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background: var(--surface-dim);
+  border-color: var(--border-strong);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  background: #24497a;
+  border-color: #24497a;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--surface-dim);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.badge-info {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: #c0d4ed;
+}
+
+.badge-cached {
+  background: #e8f5ee;
+  color: var(--success);
+  border-color: #b8ddc8;
+}
+
+.badge-fallback {
+  background: #fef3e2;
+  color: var(--warning);
+  border-color: #f0d9a8;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
