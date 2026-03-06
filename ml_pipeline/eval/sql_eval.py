@@ -41,7 +41,7 @@ def _judge_sql(question: str, sql: str, sql_error: str | None) -> dict:
     try:
         client = Groq(api_key=settings.groq_api_key)
         response = client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="llama-3.3-70b-versatile",
             messages=messages,
             temperature=0,
             max_tokens=256,

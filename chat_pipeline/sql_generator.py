@@ -1,9 +1,10 @@
 """
-SQL generation via Groq Llama 3 70B.
+SQL generation via Groq llama-3.3-70b-versatile.
 Falls back to OpenAI GPT-4o if Groq fails.
 """
 
 import os
+import re
 import sys
 
 from groq import Groq
@@ -16,8 +17,16 @@ from ml_pipeline.monitoring.logger import JSONLogger
 
 logger = JSONLogger()
 
-GROQ_SQL_MODEL = "llama3-70b-8192"
+GROQ_SQL_MODEL = "llama-3.3-70b-versatile"
 OPENAI_FALLBACK_MODEL = "gpt-4o"
+
+
+def _strip_fences(text: str) -> str:
+    """Strip markdown code fences that LLMs sometimes add despite instructions."""
+    text = text.strip()
+    text = re.sub(r"^```[a-zA-Z]*\n?", "", text)
+    text = re.sub(r"\n?```$", "", text)
+    return text.strip()
 
 
 def _build_system_prompt() -> str:
@@ -66,7 +75,7 @@ def generate_sql(
             temperature=0,
             max_tokens=1024,
         )
-        sql = response.choices[0].message.content.strip()
+        sql = _strip_fences(response.choices[0].message.content.strip())
         logger.log("sql_generated", {"model": "groq", "question": question[:80]})
         return sql, "groq"
 
@@ -81,6 +90,6 @@ def generate_sql(
         temperature=0,
         max_tokens=1024,
     )
-    sql = response.choices[0].message.content.strip()
+    sql = _strip_fences(response.choices[0].message.content.strip())
     logger.log("sql_generated", {"model": "openai", "question": question[:80]})
     return sql, "openai"
