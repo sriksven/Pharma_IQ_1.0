@@ -1,9 +1,6 @@
-import time
-import json
 import sys
 import os
 
-import duckdb
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
