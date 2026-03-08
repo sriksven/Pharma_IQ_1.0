@@ -8,6 +8,7 @@ export default function CsvModal({ filename, onClose }) {
 
     useEffect(() => {
         if (!filename) return
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setLoading(true)
         setError(null)
         fetch(`http://localhost:8000/api/v1/data/json/${filename}`)

@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 from data_pipeline.registry import load_registry
-from data_pipeline.ingest import get_registry_map
 
 router = APIRouter()
 

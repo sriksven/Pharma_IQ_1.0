@@ -11,24 +11,25 @@ export default function Sidebar({ onNewChat, currentSessionId }) {
     const navigate = useNavigate()
     const location = useLocation()
 
-    useEffect(() => {
-        loadSessions()
-        loadTables()
-    }, [currentSessionId])
-
-    async function loadSessions() {
+    const loadSessions = async () => {
         try {
             const data = await getSessions()
             setSessions(data.sessions || [])
-        } catch { }
+        } catch (err) { console.error(err) }
     }
 
-    async function loadTables() {
+    const loadTables = async () => {
         try {
             const data = await getTables()
             setTables(data.tables || [])
-        } catch { }
+        } catch (err) { console.error(err) }
     }
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        loadSessions()
+        loadTables()
+    }, [currentSessionId])
 
     async function handleDelete(e, sessionId) {
         e.stopPropagation()

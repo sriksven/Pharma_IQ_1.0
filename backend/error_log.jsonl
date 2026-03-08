@@ -408,3 +408,21 @@
 {"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:25:31.531511"}
 {"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:25:31.532118"}
 {"event": "validation_warning", "data": {"table": "empty", "reason": "zero rows"}, "ts": "2026-03-08T20:25:31.537514"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:31:15.882284"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:31:15.890017"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:31:15.894214"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:31:15.897214"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:31:15.909946"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:31:15.918921"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:31:15.919992"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:31:15.920622"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:31:15.921244"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:31:19.204765"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:31:19.213068"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:31:19.216206"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:31:19.218897"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:31:19.227064"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:31:19.236055"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:31:19.236995"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:31:19.237504"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:31:19.237989"}

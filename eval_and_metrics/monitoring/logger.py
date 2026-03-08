@@ -16,5 +16,5 @@ class JSONLogger:
         try:
             with open("/Users/sriks/Documents/Projects/PharmaIQ1.0/backend/error_log.jsonl", "a") as f:
                 f.write(dump + "\n")
-        except:
+        except Exception:
             pass
