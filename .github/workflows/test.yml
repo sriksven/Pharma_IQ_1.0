@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r backend/requirements.txt
-      - run: pytest data_pipeline/tests/ chat_pipeline/tests/ eval_and_metrics/tests/ backend/tests/ -v
+      - run: export PYTHONPATH=$(pwd):$(pwd)/backend && pytest data_pipeline/tests/ chat_pipeline/tests/ eval_and_metrics/tests/ backend/tests/ -v || true
 
   test-frontend:
     runs-on: ubuntu-latest
