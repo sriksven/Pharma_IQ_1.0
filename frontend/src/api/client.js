@@ -61,6 +61,19 @@ export async function getMetricsQueries(limit = 20) {
   return res.json()
 }
 
+export async function getLiveKitToken(sessionId = null) {
+  const res = await fetch(`${BASE}/api/v1/voice/token`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ session_id: sessionId }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || 'Failed to get voice token')
+  }
+  return res.json()
+}
+
 export async function getMetricsEvals(limit = 50) {
   const res = await fetch(`${BASE}/api/v1/metrics/evals?limit=${limit}`)
   if (!res.ok) throw new Error('Failed to fetch eval metrics')

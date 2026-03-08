@@ -41,6 +41,7 @@ frontend/.vite/
 
 # Logs
 *.log
+*.jsonl
 
 # pytest
 .pytest_cache/

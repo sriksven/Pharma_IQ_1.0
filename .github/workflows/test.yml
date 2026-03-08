@@ -14,13 +14,24 @@ jobs:
       OPENAI_API_KEY: test
       UPSTASH_REDIS_URL: test
       UPSTASH_REDIS_TOKEN: test
+      LIVEKIT_URL: ""
+      LIVEKIT_API_KEY: ""
+      LIVEKIT_API_SECRET: ""
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - run: pip install -r backend/requirements.txt
-      - run: export PYTHONPATH=$(pwd):$(pwd)/backend && pytest data_pipeline/tests/ chat_pipeline/tests/ eval_and_metrics/tests/ backend/tests/ -v || true
+      - run: >
+          export PYTHONPATH=$(pwd):$(pwd)/backend &&
+          pytest
+          data_pipeline/tests/
+          chat_pipeline/tests/
+          eval_and_metrics/tests/
+          backend/tests/
+          voice_pipeline/tests/
+          -v
 
   test-frontend:
     runs-on: ubuntu-latest

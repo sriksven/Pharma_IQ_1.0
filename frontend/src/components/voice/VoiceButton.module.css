@@ -1,0 +1,64 @@
+.voiceBtn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-faint);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    padding: 0;
+}
+
+.voiceBtn:hover:not(:disabled) {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+.voiceBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Active (mic on) — accent ring */
+.voiceBtn.active {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+    color: var(--accent);
+}
+
+/* Pulsing animation for active state */
+.voiceBtn.active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    animation: voice-pulse 1.4s ease-out infinite;
+    border: 2px solid var(--accent);
+}
+
+.voiceBtn {
+    position: relative;
+}
+
+@keyframes voice-pulse {
+    0%   { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0;   transform: scale(1.6); }
+}
+
+/* Connecting dots */
+.dots {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--text-faint);
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.2; }
+}

@@ -1,6 +1,6 @@
 # Sample Questions & Expected Answers
 
-These are example questions you can ask PharmaIQ in the chat UI, along with the expected type of answer based on the current dataset (GAZYVA, Aug 2024 – onward, 90 HCPs, 3 territories, 9 reps).
+These are example questions you can ask PharmaIQ in the chat UI, along with the expected type of answer based on the current dataset (GAZYVA, Aug 2024 - onward, 90 HCPs, 3 territories, 9 reps).
 
 ---
 
@@ -22,7 +22,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 > Rheumatology: 3,556 | Internal Medicine: 2,582 | Nephrology: 2,184.
 
 **6. Which territory has the highest NRx?**
-> Territory 3 (~2,846), followed by Territory 2 (~2,783) and Territory 1 (~2,693) — relatively balanced.
+> Territory 3 (~2,846), followed by Territory 2 (~2,783) and Territory 1 (~2,693) -- relatively balanced.
 
 **7. How does NRx compare across territories?**
 > Territory 3: 2,846 | Territory 2: 2,783 | Territory 1: 2,693.
@@ -34,7 +34,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 > Tier C: 3,154 | Tier B: 2,847 | Tier A: 2,321.
 
 **10. Who are the top 5 prescribing doctors?**
-> Dr Blake Garcia (128), Dr Phoenix Lee (117), Dr Morgan White (115), Dr Sydney Johnson (113), Dr Taylor Gonzalez (112) — all Rheumatology or Internal Medicine.
+> Dr Blake Garcia (128), Dr Phoenix Lee (117), Dr Morgan White (115), Dr Sydney Johnson (113), Dr Taylor Gonzalez (112) -- all Rheumatology or Internal Medicine.
 
 ---
 
@@ -59,7 +59,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 > 30 HCPs are assigned to Territory 1.
 
 **17. Who are the Rheumatology doctors with the highest NRx?**
-> Dr Blake Garcia (128), Dr Phoenix Lee (117), Dr Morgan White (115), Dr Taylor Gonzalez (112) — all Rheumatology.
+> Dr Blake Garcia (128), Dr Phoenix Lee (117), Dr Morgan White (115), Dr Taylor Gonzalez (112) -- all Rheumatology.
 
 **18. What is the average NRx per doctor?**
 > ~92 NRx per HCP (8,322 ÷ 90).

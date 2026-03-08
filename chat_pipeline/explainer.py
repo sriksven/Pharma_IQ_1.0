@@ -37,7 +37,7 @@ def _build_messages(
         "Answer the user's question based on the SQL query results below. "
         "If there is prior conversation context, use it to understand follow-up questions. "
         "Write in clear, direct prose. No bullet points unless listing items. "
-        "Do NOT include long dashes (—) anywhere in your response. "
+        "Do NOT include long dashes (--) anywhere in your response. "
         "Include one proactive insight beyond the literal answer. "
         "Keep it under 200 words."
     )

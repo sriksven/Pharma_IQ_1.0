@@ -78,6 +78,30 @@ export default function ChatPage() {
         }
     }
 
+    function handleVoiceMessage(msg) {
+        if (msg.type === 'user') {
+            setMessages((prev) => [...prev, { role: 'user', content: msg.text }])
+        } else if (msg.type === 'assistant') {
+            setMessages((prev) => [
+                ...prev,
+                {
+                    role: 'assistant',
+                    content: msg.text,
+                    sql_query: msg.sql || null,
+                    provenance: msg.provenance || [],
+                    chart_hint: msg.chart_hint || null,
+                    chart_data: null,
+                    llm_used: msg.llm_used || null,
+                    cache_hit: msg.cache_hit || false,
+                },
+            ])
+            if (msg.session_id && !sessionId) {
+                setSessionId(msg.session_id)
+                setSearchParams({ session: msg.session_id })
+            }
+        }
+    }
+
     return (
         <div className={styles.page}>
             <Header />
@@ -86,7 +110,7 @@ export default function ChatPage() {
                 <main className={styles.main}>
                     <ErrorBanner message={error} onDismiss={() => setError(null)} />
                     <ChatThread messages={messages} loading={loading} />
-                    <InputBar onSubmit={handleSubmit} disabled={loading} />
+                    <InputBar onSubmit={handleSubmit} disabled={loading} sessionId={sessionId} onVoiceMessage={handleVoiceMessage} />
                 </main>
             </div>
         </div>

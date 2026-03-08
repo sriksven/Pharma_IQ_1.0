@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     data_dir: str = os.path.join(_PROJECT_ROOT, "data_pipeline", "raw")
     sqlite_db_path: str = os.path.join(_PROJECT_ROOT, "pharma_iq.db")
     log_level: str = "INFO"
+    livekit_url: str = ""
+    livekit_api_key: str = ""
+    livekit_api_secret: str = ""
 
     class Config:
         env_file = _ENV_FILE

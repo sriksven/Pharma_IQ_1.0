@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react'
 import styles from './InputBar.module.css'
+import VoiceButton from '../voice/VoiceButton'
 
-export default function InputBar({ onSubmit, disabled }) {
+export default function InputBar({ onSubmit, disabled, sessionId, onVoiceMessage }) {
     const [value, setValue] = useState('')
     const textareaRef = useRef(null)
 
@@ -49,6 +50,11 @@ export default function InputBar({ onSubmit, disabled }) {
                 >
                     Send
                 </button>
+                <VoiceButton
+                    sessionId={sessionId}
+                    onVoiceMessage={onVoiceMessage}
+                    disabled={disabled}
+                />
             </div>
             <div className={styles.hint}>Enter to send, Shift+Enter for newline</div>
         </div>

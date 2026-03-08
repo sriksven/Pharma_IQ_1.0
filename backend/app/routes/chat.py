@@ -39,7 +39,7 @@ def get_db():
 NO_ANSWER_MSG = (
     "I'm sorry, I don't have enough information in the dataset to answer that question. "
     "Try asking about prescriptions (nrx/trx), doctor specialties, sales rep activity, "
-    "territory market share, or payer mix — those are the areas covered by the data."
+    "territory market share, or payer mix -- those are the areas covered by the data."
 )
 
 # Number of prior turns to include as memory context
