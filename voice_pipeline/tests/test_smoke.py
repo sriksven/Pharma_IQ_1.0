@@ -2,9 +2,10 @@
 Smoke tests for the voice pipeline modules.
 No live API calls are made -- OpenAI and LiveKit dependencies are not contacted.
 """
-import sys
-import os
+import asyncio
 import importlib
+import os
+import sys
 import tempfile
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -56,9 +57,6 @@ def test_pharma_llm_last_response_default_empty():
     from voice_pipeline.livekit_agent import PharmaIQLLM
     instance = PharmaIQLLM()
     assert instance.last_response == {}
-
-
-import asyncio
 
 
 def test_pharma_llm_stream_created_from_chat():
