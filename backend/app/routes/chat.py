@@ -7,6 +7,7 @@ import uuid
 
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from pydantic import BaseModel
+from typing import Optional, List, Dict, Any
 
 from chat_pipeline.cache import get_cached, set_cached
 from chat_pipeline.retry import run_with_retry
@@ -222,4 +223,32 @@ async def chat(req: ChatRequest, background_tasks: BackgroundTasks):
 
     logger.log("answer_generated", {"session_id": session_id, "latency_ms": latency_ms})
     return response
+
+
+class FeedbackRequest(BaseModel):
+    score: int
+
+
+@router.post("/messages/{message_id}/feedback")
+def submit_feedback(message_id: int, request: FeedbackRequest):
+    """
+    Update the user_feedback column for a specific message.
+    Score should typically be +1 (thumbs up), -1 (thumbs down), or 0 (neutral).
+    """
+    if request.score not in (-1, 0, 1):
+        raise HTTPException(status_code=400, detail="Score must be -1, 0, or 1")
+        
+    try:
+        with get_db() as conn:
+            conn.execute(
+                "UPDATE messages SET user_feedback = ? WHERE id = ?",
+                (request.score, message_id)
+            )
+            if conn.total_changes == 0:
+                raise HTTPException(status_code=404, detail="Message not found")
+        return {"status": "success", "message_id": message_id, "score": request.score}
+    except Exception as e:
+        logger.log("error_feedback", {"message_id": message_id, "error": str(e)})
+        raise HTTPException(status_code=500, detail="Internal server error")
+
 

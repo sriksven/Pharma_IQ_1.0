@@ -45,6 +45,7 @@ async def init_db():
             created_at TEXT,
             sql_system_prompt TEXT,
             explain_system_prompt TEXT,
+            user_feedback INTEGER DEFAULT 0,
             FOREIGN KEY (session_id) REFERENCES sessions(session_id)
         );
 
@@ -98,6 +99,12 @@ async def init_db():
     try:
         conn.execute("ALTER TABLE messages ADD COLUMN chart_data TEXT")
     except sqlite3.OperationalError:
+        pass
+
+    try:
+        conn.execute("ALTER TABLE messages ADD COLUMN user_feedback INTEGER DEFAULT 0")
+    except sqlite3.OperationalError:
+        pass
         pass
         
     try:

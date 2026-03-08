@@ -28,7 +28,7 @@ def metrics_summary():
             SUM(CASE WHEN llm_used = 'groq_fallback' THEN 1 ELSE 0 END) * 1.0
                 / NULLIF(COUNT(*), 0) as fallback_rate,
             AVG(retry_count) as avg_retry_count,
-            SUM(failed) * 1.0 / NULLIF(COUNT(*), 0) as failed_rate
+            SUM(CASE WHEN failed = 0 THEN 1 ELSE 0 END) * 1.0 / NULLIF(COUNT(*), 0) as success_rate
            FROM query_metrics"""
     ).fetchone()
 
@@ -40,6 +40,13 @@ def metrics_summary():
             AVG(sql_schema_precision) as avg_schema_precision
            FROM eval_results"""
     ).fetchone()
+    
+    fb = conn.execute(
+        """SELECT 
+            SUM(CASE WHEN user_feedback = 1 THEN 1 ELSE 0 END) * 1.0 / 
+            NULLIF(SUM(CASE WHEN user_feedback IN (1, -1) THEN 1 ELSE 0 END), 0) as satisfaction_score
+           FROM messages"""
+    ).fetchone()
 
     conn.close()
 
@@ -48,9 +55,11 @@ def metrics_summary():
         "avg_latency_ms": round(qm["avg_latency_ms"] or 0, 1),
         "cache_hit_rate": round((qm["cache_hit_rate"] or 0) * 100, 1),
         "fallback_rate": round((qm["fallback_rate"] or 0) * 100, 1),
+        "success_rate": round((qm["success_rate"] or 0) * 100, 1),
         "avg_retry_count": round(qm["avg_retry_count"] or 0, 2),
-        "failed_rate": round((qm["failed_rate"] or 0) * 100, 1),
-        "avg_sql_correctness": round((er["avg_sql_correctness"] or 0) * 10, 1),
+        "failed_rate": round((1 - (qm["success_rate"] or 0)) * 100, 1), # Calculate failed_rate from success_rate
+        "satisfaction_score": round((fb["satisfaction_score"] or 0) * 100, 1) if fb and fb["satisfaction_score"] is not None else None,
+        "avg_sql_correctness": round((er["avg_sql_correctness"] or 0) * 10, 1) if er and er["avg_sql_correctness"] is not None else None,
         "avg_answer_relevance": round((er["avg_answer_relevance"] or 0) * 10, 1),
         "avg_faithfulness": round((er["avg_faithfulness"] or 0) * 10, 1) if er["avg_faithfulness"] is not None else None,
         "avg_schema_precision": round((er["avg_schema_precision"] or 0) * 10, 1) if er["avg_schema_precision"] is not None else None,

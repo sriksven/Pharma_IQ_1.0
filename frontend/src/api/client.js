@@ -13,6 +13,16 @@ export async function sendMessage(sessionId, question) {
   return res.json()
 }
 
+export async function rateMessage(messageId, score) {
+  const res = await fetch(`${BASE}/api/v1/chat/messages/${messageId}/feedback`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ score }),
+  })
+  if (!res.ok) throw new Error('Failed to submit feedback')
+  return res.json()
+}
+
 export async function getSessions() {
   const res = await fetch(`${BASE}/api/v1/sessions`)
   if (!res.ok) throw new Error('Failed to fetch sessions')

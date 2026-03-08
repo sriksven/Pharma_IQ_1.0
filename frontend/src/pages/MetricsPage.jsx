@@ -28,12 +28,14 @@ export default function MetricsPage() {
                 {summary && (
                     <div className={styles.grid}>
                         <Stat label="Total queries" value={summary.total_queries} />
+                        <Stat label="Success rate" value={`${summary.success_rate}%`} />
+                        <Stat label="User satisfaction" value={summary.satisfaction_score != null ? `${summary.satisfaction_score}%` : '--'} />
                         <Stat label="Avg latency" value={`${summary.avg_latency_ms} ms`} />
                         <Stat label="Cache hit rate" value={`${summary.cache_hit_rate}%`} />
                         <Stat label="Fallback rate" value={`${summary.fallback_rate}%`} />
                         <Stat label="Avg retry count" value={summary.avg_retry_count} />
                         <Stat label="Failed rate" value={`${summary.failed_rate}%`} />
-                        <Stat label="Avg SQL correctness" value={`${summary.avg_sql_correctness}/10`} />
+                        <Stat label="Avg SQL correctness" value={summary.avg_sql_correctness != null ? `${summary.avg_sql_correctness}/10` : '--'} />
                         <Stat label="Avg answer relevance" value={`${summary.avg_answer_relevance}/10`} />
                         <Stat label="Avg faithfulness" value={summary.avg_faithfulness != null ? `${summary.avg_faithfulness}/10` : '--'} />
                         <Stat label="Avg schema precision" value={summary.avg_schema_precision != null ? `${summary.avg_schema_precision}/10` : '--'} />

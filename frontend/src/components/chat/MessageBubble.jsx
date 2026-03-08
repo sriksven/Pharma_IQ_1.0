@@ -2,6 +2,7 @@ import SqlViewer from './SqlViewer'
 import ProvenanceTag from './ProvenanceTag'
 import LlmBadge from './LlmBadge'
 import AutoChart from '../charts/AutoChart'
+import FeedbackButtons from './FeedbackButtons'
 import styles from './MessageBubble.module.css'
 
 export default function MessageBubble({ message }) {
@@ -35,11 +36,19 @@ export default function MessageBubble({ message }) {
                 }
             />
 
-            <LlmBadge
-                llmUsed={message.llm_used}
-                cacheHit={message.cache_hit}
-                fallbackReason={message.fallback_reason}
-            />
+            <div className={styles.footerRow}>
+                <LlmBadge
+                    llmUsed={message.llm_used}
+                    cacheHit={message.cache_hit}
+                    fallbackReason={message.fallback_reason}
+                />
+                {!message.cache_hit && (
+                    <FeedbackButtons
+                        messageId={message.id || message.message_id}
+                        initialScore={message.user_feedback || 0}
+                    />
+                )}
+            </div>
         </div>
     )
 }

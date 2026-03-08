@@ -498,3 +498,253 @@
 {"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:35:15.531673"}
 {"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:35:15.532367"}
 {"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:35:15.532952"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:35:21.394983"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:35:21.403036"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:35:21.406852"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:35:21.410034"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:35:21.418702"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:35:21.428907"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:35:21.430862"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:35:21.431584"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:35:21.432171"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:46:29.275110"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:46:29.283114"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:46:29.286501"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:46:29.289361"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:46:29.298049"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:46:29.306896"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:46:29.308043"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:46:29.308695"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:46:29.309317"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:46:32.781155"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:46:32.788360"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:46:32.791416"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:46:32.793953"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:46:32.801787"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:46:32.810755"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:46:32.811869"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:46:32.812463"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:46:32.813043"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:46:53.626783"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:46:53.634613"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:46:53.637924"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:46:53.642184"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:46:53.650649"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:46:53.660166"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:46:53.661637"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:46:53.662339"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:46:53.663270"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:46:57.413524"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:46:57.421030"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:46:57.424157"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:46:57.426818"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:46:57.435109"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:46:57.444207"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:46:57.445140"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:46:57.445668"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:46:57.446163"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:48:23.766524"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:48:23.774162"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:48:23.777558"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:48:23.780333"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:48:23.788438"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:48:23.797673"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:48:23.798805"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:48:23.799367"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:48:23.800034"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:48:28.855736"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:48:28.863900"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:48:28.867841"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:48:28.871162"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:48:28.880714"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:48:28.891651"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:48:28.893196"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:48:28.894373"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:48:28.895537"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:48:36.614031"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:48:36.621943"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:48:36.625250"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:48:36.628051"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:48:36.636371"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:48:36.645918"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:48:36.647243"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:48:36.647835"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:48:36.648338"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:48:38.996557"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:48:39.003804"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:48:39.006891"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:48:39.009640"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:48:39.018262"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:48:39.027593"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:48:39.028576"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:48:39.029125"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:48:39.029630"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:48:49.827085"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:48:49.834799"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:48:49.838525"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:48:49.850917"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:48:49.878577"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:48:49.892181"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:48:49.898230"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:48:49.901338"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:48:49.903050"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:48:52.156470"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:48:52.164159"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:48:52.167310"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:48:52.169924"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:48:52.177901"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:48:52.186980"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:48:52.188015"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:48:52.188573"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:48:52.189073"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:49:03.587335"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:49:03.599056"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:49:03.605102"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:49:03.609819"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:49:03.622300"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:49:03.635068"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:49:03.636954"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:49:03.639304"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:49:03.640442"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:49:05.786154"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:49:05.793347"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:49:05.796685"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:49:05.799323"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:49:05.807590"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:49:05.816875"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:49:05.817954"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:49:05.818523"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:49:05.819053"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total NRx count across all HCPs?"}, "ts": "2026-03-08T20:49:10.166132"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 1: SELECT SUM(nrx_cnt) AS total_nrx FROM fact_rx;\n                                              ^", "sql": "SELECT SUM(nrx_cnt) AS total_nrx FROM fact_rx;"}, "ts": "2026-03-08T20:49:10.231572"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total NRx count across all HCPs?"}, "ts": "2026-03-08T20:49:12.596166"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 1: SELECT SUM(nrx_cnt) AS total_nrx FROM \"fact_rx\";\n                                              ^", "sql": "SELECT SUM(nrx_cnt) AS total_nrx FROM \"fact_rx\";"}, "ts": "2026-03-08T20:49:12.598917"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total NRx count across all HCPs?"}, "ts": "2026-03-08T20:49:15.152230"}
+{"event": "sql_failed", "data": {"attempt": 2, "error": "Schema validation failed: SQL syntax error: No expression was parsed from ''", "sql": ""}, "ts": "2026-03-08T20:49:15.152967"}
+{"event": "sql_failed", "data": {"attempt": 3, "final": true}, "ts": "2026-03-08T20:49:15.153139"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total TRx count?"}, "ts": "2026-03-08T20:49:15.517342"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 2: FROM fact_rx;\n             ^", "sql": "SELECT SUM(trx_cnt) AS total_trx_cnt\nFROM fact_rx;"}, "ts": "2026-03-08T20:49:15.520484"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total TRx count?"}, "ts": "2026-03-08T20:49:18.031700"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 2: FROM \"fact_rx\";\n             ^", "sql": "SELECT SUM(trx_cnt) AS total_trx_cnt\nFROM \"fact_rx\";"}, "ts": "2026-03-08T20:49:18.034169"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total TRx count?"}, "ts": "2026-03-08T20:49:19.951702"}
+{"event": "sql_failed", "data": {"attempt": 2, "error": "Schema validation failed: SQL syntax error: Invalid expression / Unexpected token. Line 2, Col: 14.\n  SELECT SUM(trx_cnt) AS total_trx_cnt\nFROM `fact_rx\u001b[4m`\u001b[0m;", "sql": "SELECT SUM(trx_cnt) AS total_trx_cnt\nFROM `fact_rx`;"}, "ts": "2026-03-08T20:49:19.954913"}
+{"event": "sql_failed", "data": {"attempt": 3, "final": true}, "ts": "2026-03-08T20:49:19.955414"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "How many total prescriptions were written for GAZYVA?"}, "ts": "2026-03-08T20:49:20.551229"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 2: FROM fact_rx\n             ^", "sql": "SELECT SUM(trx_cnt) AS total_prescriptions\nFROM fact_rx\nWHERE brand_code = 'GAZYVA';"}, "ts": "2026-03-08T20:49:20.554324"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "How many total prescriptions were written for GAZYVA?"}, "ts": "2026-03-08T20:49:22.471408"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 2: FROM \"fact_rx\"\n             ^", "sql": "SELECT SUM(trx_cnt) AS total_prescriptions\nFROM \"fact_rx\"\nWHERE brand_code = 'GAZYVA';"}, "ts": "2026-03-08T20:49:22.472913"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "How many total prescriptions were written for GAZYVA?"}, "ts": "2026-03-08T20:49:23.583162"}
+{"event": "sql_failed", "data": {"attempt": 2, "error": "Catalog Error: Table with name fact_ln_metrics does not exist!\nDid you mean \"temp.information_schema.tables\"?\nLINE 2: FROM fact_ln_metrics\n             ^", "sql": "SELECT SUM(ln_patient_cnt) AS total_prescriptions\nFROM fact_ln_metrics\nWHERE entity_type = 'brand'\n  AND entity_id = 'GAZYVA';"}, "ts": "2026-03-08T20:49:23.585856"}
+{"event": "sql_failed", "data": {"attempt": 3, "final": true}, "ts": "2026-03-08T20:49:23.586034"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which specialty has the highest NRx volume?"}, "ts": "2026-03-08T20:49:24.124245"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (hcp_dim, fact_rx): nrx_cnt, trx_cnt, full_name, tier, brand_code, hcp_id, date_id, specialty, territory_id.", "sql": "SELECT h.specialty, SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h USING (hcp_id)\nGROUP BY h.specialty\nORDER BY total_nrx DESC\nLIMIT 1"}, "ts": "2026-03-08T20:49:24.126576"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which specialty has the highest NRx volume?"}, "ts": "2026-03-08T20:49:25.338282"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (hcp_dim, fact_rx): nrx_cnt, trx_cnt, full_name, tier, brand_code, hcp_id, date_id, specialty, territory_id.", "sql": "SELECT h.specialty,\n       SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nGROUP BY h.specialty\nORDER BY total_nrx DESC\nLIMIT 1"}, "ts": "2026-03-08T20:49:25.340178"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:49:31.250767"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:49:31.259105"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:49:31.262905"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:49:31.266312"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:49:31.275922"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:49:31.286689"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:49:31.288822"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:49:31.289698"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:49:31.290455"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:49:33.256570"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:49:33.263919"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:49:33.267178"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:49:33.269929"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:49:33.278459"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:49:33.287874"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:49:33.288953"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:49:33.289508"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:49:33.290017"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which specialty has the highest NRx volume?"}, "ts": "2026-03-08T20:49:33.503515"}
+{"event": "sql_failed", "data": {"attempt": 2, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 2: FROM fact_rx r\n             ^", "sql": "SELECT h.specialty\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nGROUP BY h.specialty\nORDER BY SUM(r.nrx_cnt) DESC\nLIMIT 1"}, "ts": "2026-03-08T20:49:33.506802"}
+{"event": "sql_failed", "data": {"attempt": 3, "final": true}, "ts": "2026-03-08T20:49:33.507036"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the NRx breakdown by specialty?"}, "ts": "2026-03-08T20:49:34.223589"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (hcp_dim, fact_rx): nrx_cnt, trx_cnt, full_name, tier, brand_code, hcp_id, date_id, specialty, territory_id.", "sql": "SELECT h.specialty,\n       SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nGROUP BY h.specialty\nORDER BY total_nrx DESC;"}, "ts": "2026-03-08T20:49:34.225269"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:49:38.463636"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:49:38.470913"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:49:38.474237"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:49:38.477087"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:49:38.485457"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:49:38.495762"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:49:38.497167"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:49:38.497772"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:49:38.498267"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total NRx count across all HCPs?"}, "ts": "2026-03-08T20:49:39.035547"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total TRx count?"}, "ts": "2026-03-08T20:49:42.026734"}
+{"event": "groq_error", "data": {"reason": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01j429r5a0fwxagsa6vz9qz5nd` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7619, Requested 692. Please try again in 2.3325s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}", "step": "sql_gen"}, "ts": "2026-03-08T20:49:42.533458"}
+{"event": "fallback_triggered", "data": {"model": "openai/gpt-oss-20b"}, "ts": "2026-03-08T20:49:42.534512"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-20b", "question": "What is the NRx breakdown by specialty?"}, "ts": "2026-03-08T20:49:42.925721"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 3: FROM fact_rx r\n             ^", "sql": "SELECT h.specialty,\n       SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nGROUP BY h.specialty\nORDER BY SUM(r.nrx_cnt) DESC;"}, "ts": "2026-03-08T20:49:42.928869"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "How many total prescriptions were written for GAZYVA?"}, "ts": "2026-03-08T20:49:44.816723"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which specialty has the highest NRx volume?"}, "ts": "2026-03-08T20:49:48.389679"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, hcp_dim): date_id, brand_code, nrx_cnt, tier, full_name, trx_cnt, territory_id, hcp_id, specialty.", "sql": "SELECT h.specialty, SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h USING (hcp_id)\nGROUP BY h.specialty\nORDER BY total_nrx DESC\nLIMIT 1"}, "ts": "2026-03-08T20:49:48.392683"}
+{"event": "groq_error", "data": {"reason": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01j429r5a0fwxagsa6vz9qz5nd` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7238, Requested 846. Please try again in 630ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}", "step": "sql_gen"}, "ts": "2026-03-08T20:49:50.361550"}
+{"event": "fallback_triggered", "data": {"model": "openai/gpt-oss-20b"}, "ts": "2026-03-08T20:49:50.361922"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-20b", "question": "What is the NRx breakdown by specialty?"}, "ts": "2026-03-08T20:49:51.593280"}
+{"event": "sql_failed", "data": {"attempt": 2, "error": "Schema validation failed: SQL syntax error: No expression was parsed from ''", "sql": ""}, "ts": "2026-03-08T20:49:51.594465"}
+{"event": "sql_failed", "data": {"attempt": 3, "final": true}, "ts": "2026-03-08T20:49:51.594678"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which specialty has the highest NRx volume?"}, "ts": "2026-03-08T20:49:51.912931"}
+{"event": "sql_retried", "data": {"attempt": 1, "success": true}, "ts": "2026-03-08T20:49:51.941706"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which territory has the highest NRx?"}, "ts": "2026-03-08T20:49:56.453773"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (territory_dim, hcp_dim, fact_rx): nrx_cnt, geo_type, parent_territory_id, trx_cnt, name, full_name, tier, brand_code, hcp_id, date_id, specialty, territory_id.", "sql": "SELECT t.name AS territory_name, SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nJOIN territory_dim t ON h.territory_id = t.territory_id\nGROUP BY t.name\nORDER BY total"}, "ts": "2026-03-08T20:49:56.457242"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:50:00.569897"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:50:00.578242"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:50:00.581810"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:50:00.584771"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:50:00.593198"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:50:00.602610"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:50:00.603986"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:50:00.604900"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:50:00.605666"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the NRx breakdown by specialty?"}, "ts": "2026-03-08T20:50:01.162003"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, hcp_dim): date_id, brand_code, nrx_cnt, tier, full_name, trx_cnt, territory_id, hcp_id, specialty.", "sql": "SELECT\n    h.specialty,\n    SUM(r.nrx_cnt) AS total_nrx,\n    ROUND(100.0 * SUM(r.nrx_cnt) / SUM(SUM(r.nrx_cnt)) OVER (), 2) AS pct_of_total_nrx\nFROM fact_rx r\nJOIN hcp_dim h USING (hcp_id)\nGROUP BY h."}, "ts": "2026-03-08T20:50:01.163046"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:50:02.375259"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:50:02.382725"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:50:02.385764"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:50:02.388408"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:50:02.396714"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:50:02.405558"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:50:02.406576"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:50:02.407097"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:50:02.407627"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T20:50:06.719792"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T20:50:06.727370"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T20:50:06.730998"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T20:50:06.734114"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T20:50:06.743792"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T20:50:06.754208"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T20:50:06.755712"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T20:50:06.756316"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T20:50:06.756848"}
+{"event": "groq_error", "data": {"reason": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01j429r5a0fwxagsa6vz9qz5nd` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7861, Requested 728. Please try again in 4.4175s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}", "step": "sql_gen"}, "ts": "2026-03-08T20:50:06.862451"}
+{"event": "fallback_triggered", "data": {"model": "openai/gpt-oss-20b"}, "ts": "2026-03-08T20:50:06.862590"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-20b", "question": "Which territory has the highest NRx?"}, "ts": "2026-03-08T20:50:07.327297"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Catalog Error: Table with name fact_rx does not exist!\nDid you mean \"pg_am\"?\nLINE 2: FROM fact_rx r\n             ^", "sql": "SELECT t.name AS territory_name, SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nJOIN territory_dim t ON h.territory_id = t.territory_id\nGROUP BY t.name\nORDER BY SUM(r"}, "ts": "2026-03-08T20:50:07.330726"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the NRx breakdown by specialty?"}, "ts": "2026-03-08T20:50:07.795086"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Schema validation failed: Referenced table 'specialty_nrx' does not exist in schema.; Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, hcp_dim): date_id, brand_code, nrx_cnt, tier, full_name, trx_cnt, territory_id, hcp_id, specialty.", "sql": "WITH specialty_nrx AS (\n    SELECT\n        h.specialty,\n        SUM(r.nrx_cnt) AS total_nrx\n    FROM fact_rx r\n    JOIN hcp_dim h USING (hcp_id)\n    GROUP BY h.specialty\n)\nSELECT\n    specialty,\n    to"}, "ts": "2026-03-08T20:50:07.798683"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total NRx count across all HCPs?"}, "ts": "2026-03-08T20:50:12.418929"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "What is the total TRx count?"}, "ts": "2026-03-08T20:50:14.866666"}
+{"event": "groq_error", "data": {"reason": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01j429r5a0fwxagsa6vz9qz5nd` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7408, Requested 903. Please try again in 2.3325s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}", "step": "sql_gen"}, "ts": "2026-03-08T20:50:17.656979"}
+{"event": "fallback_triggered", "data": {"model": "openai/gpt-oss-20b"}, "ts": "2026-03-08T20:50:17.657669"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "How many total prescriptions were written for GAZYVA?"}, "ts": "2026-03-08T20:50:18.464293"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-20b", "question": "Which territory has the highest NRx?"}, "ts": "2026-03-08T20:50:18.524485"}
+{"event": "sql_failed", "data": {"attempt": 2, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (territory_dim, hcp_dim, fact_rx): nrx_cnt, geo_type, parent_territory_id, trx_cnt, name, full_name, tier, brand_code, hcp_id, date_id, specialty, territory_id.", "sql": "SELECT t.name AS territory_name, SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nJOIN territory_dim t ON h.territory_id = t.territory_id\nGROUP BY t.name\nORDER BY total"}, "ts": "2026-03-08T20:50:18.532403"}
+{"event": "sql_failed", "data": {"attempt": 3, "final": true}, "ts": "2026-03-08T20:50:18.533141"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which specialty has the highest NRx volume?"}, "ts": "2026-03-08T20:50:21.016559"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, hcp_dim): specialty, full_name, tier, territory_id, nrx_cnt, trx_cnt, date_id, hcp_id, brand_code.", "sql": "SELECT h.specialty, SUM(r.nrx_cnt) AS total_nrx\nFROM fact_rx r\nJOIN hcp_dim h USING (hcp_id)\nGROUP BY h.specialty\nORDER BY total_nrx DESC\nLIMIT 1;"}, "ts": "2026-03-08T20:50:21.018624"}
+{"event": "groq_error", "data": {"reason": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01j429r5a0fwxagsa6vz9qz5nd` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7550, Requested 963. Please try again in 3.8475s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}", "step": "sql_gen"}, "ts": "2026-03-08T20:50:21.161908"}
+{"event": "fallback_triggered", "data": {"model": "openai/gpt-oss-20b"}, "ts": "2026-03-08T20:50:21.163092"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-20b", "question": "What is the NRx breakdown by specialty?"}, "ts": "2026-03-08T20:50:22.144348"}
+{"event": "sql_failed", "data": {"attempt": 2, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, hcp_dim): date_id, brand_code, nrx_cnt, tier, full_name, trx_cnt, territory_id, hcp_id, specialty.", "sql": "SELECT\n    specialty,\n    total_nrx,\n    ROUND(100.0 * total_nrx / SUM(total_nrx) OVER (), 2) AS pct_of_total_nrx\nFROM (\n    SELECT\n        h.specialty,\n        SUM(r.nrx_cnt) AS total_nrx\n    FROM fa"}, "ts": "2026-03-08T20:50:22.147734"}
+{"event": "sql_failed", "data": {"attempt": 3, "final": true}, "ts": "2026-03-08T20:50:22.147935"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which territory has the highest NRx?"}, "ts": "2026-03-08T20:50:22.958263"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, territory_dim, hcp_dim): name, date_id, brand_code, nrx_cnt, parent_territory_id, tier, full_name, trx_cnt, territory_id, hcp_id, specialty, geo_type.", "sql": "SELECT td.name AS territory, SUM(fr.nrx_cnt) AS total_nrx\nFROM fact_rx AS fr\nJOIN hcp_dim AS hd ON fr.hcp_id = hd.hcp_id\nJOIN territory_dim AS td ON hd.territory_id = td.territory_id\nGROUP BY td.name\n"}, "ts": "2026-03-08T20:50:22.962148"}
+{"event": "groq_error", "data": {"reason": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01j429r5a0fwxagsa6vz9qz5nd` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7600, Requested 515. Please try again in 862.5ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}", "step": "sql_gen"}, "ts": "2026-03-08T20:50:24.834613"}
+{"event": "fallback_triggered", "data": {"model": "openai/gpt-oss-20b"}, "ts": "2026-03-08T20:50:24.835356"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-20b", "question": "How does NRx compare across territories?"}, "ts": "2026-03-08T20:50:25.304053"}
+{"event": "sql_failed", "data": {"attempt": 0, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (territory_dim, hcp_dim, fact_rx): nrx_cnt, geo_type, parent_territory_id, trx_cnt, name, full_name, tier, brand_code, hcp_id, date_id, specialty, territory_id.", "sql": "SELECT t.name AS territory_name,\n       SUM(r.nrx_cnt) AS total_nrx,\n       SUM(r.nrx_cnt) / SUM(SUM(r.nrx_cnt)) OVER () * 100 AS pct_of_total\nFROM fact_rx r\nJOIN hcp_dim h ON r.hcp_id = h.hcp_id\nJOIN"}, "ts": "2026-03-08T20:50:25.305967"}
+{"event": "sql_generated", "data": {"model": "openai/gpt-oss-120b", "question": "Which specialty has the highest NRx volume?"}, "ts": "2026-03-08T20:50:28.509970"}
+{"event": "sql_failed", "data": {"attempt": 1, "error": "Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, hcp_dim): specialty, full_name, tier, territory_id, nrx_cnt, trx_cnt, date_id, hcp_id, brand_code.", "sql": "SELECT specialty, total_nrx\nFROM (\n    SELECT h.specialty, SUM(r.nrx_cnt) AS total_nrx\n    FROM fact_rx r\n    JOIN hcp_dim h USING (hcp_id)\n    GROUP BY h.specialty\n) sub\nORDER BY total_nrx DESC\nLIMIT"}, "ts": "2026-03-08T20:50:28.511586"}

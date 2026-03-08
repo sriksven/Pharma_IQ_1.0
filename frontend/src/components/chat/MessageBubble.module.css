@@ -19,6 +19,15 @@
     box-shadow: var(--shadow-sm);
 }
 
+.footerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .answer {
     font-size: 14px;
     line-height: 1.7;
