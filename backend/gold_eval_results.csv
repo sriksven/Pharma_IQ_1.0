@@ -1,0 +1,54 @@
+id,question,expected_logic,generated_sql,execution_success,latency_ms,retry_count,error
+1,What is the total NRx count across all HCPs?,"~8,322 new prescriptions across all HCPs and time periods.",SELECT SUM(nrx_cnt) AS total_nrx FROM fact_rx;,True,5704,0,None
+2,What is the total TRx count?,"~26,059 total prescriptions.","SELECT SUM(trx_cnt) AS total_trx_cnt
+FROM fact_rx;",True,2430,0,None
+3,How many total prescriptions were written for GAZYVA?,"GAZYVA is the only brand in the dataset; all 8,322 NRx and 26,059 TRx belong to it.","SELECT SUM(trx_cnt) AS total_prescriptions
+FROM fact_rx
+WHERE brand_code = 'GAZYVA';",True,3592,0,None
+4,Which specialty has the highest NRx volume?,"Rheumatology leads with ~3,556 NRx, followed by Internal Medicine (~2,582) and Nephrology (~2,184).","SELECT h.specialty, SUM(r.nrx_cnt) AS total_nrx
+FROM fact_rx r
+JOIN hcp_dim h USING (hcp_id)
+GROUP BY h.specialty
+ORDER BY SUM(r.nrx_cnt) DESC
+LIMIT 1;",True,18225,2,None
+5,What is the NRx breakdown by specialty?,"Rheumatology: 3,556 | Internal Medicine: 2,582 | Nephrology: 2,184.","SELECT
+    h.specialty,
+    SUM(r.nrx_cnt) AS total_nrx,
+    ROUND(100.0 * SUM(r.nrx_cnt) / SUM(SUM(r.nrx_cnt)) OVER (), 2) AS pct_of_total_nrx
+FROM fact_rx r
+JOIN hcp_dim h ON r.hcp_id = h.hcp_id
+GROUP BY h.specialty
+ORDER BY total_nrx DESC;",False,24757,3,"Schema validation failed: Referenced column 'total_nrx' does not exist. Available columns in the queried tables (fact_rx, hcp_dim): specialty, full_name, tier, territory_id, nrx_cnt, trx_cnt, date_id, hcp_id, brand_code."
+6,Which territory has the highest NRx?,"Territory 3 (~2,846), followed by Territory 2 (~2,783) and Territory 1 (~2,693) — relatively balanced.","SELECT td.name AS territory, SUM(fr.nrx_cnt) AS total_nrx
+FROM fact_rx AS fr
+JOIN hcp_dim AS hd ON fr.hcp_id = hd.hcp_id
+JOIN territory_dim AS td ON hd.territory_id = td.territory_id
+GROUP BY td.name
+ORDER BY SUM(fr.nrx_cnt) DESC
+LIMIT 1;",True,10536,1,None
+7,How does NRx compare across territories?,"Territory 3: 2,846 | Territory 2: 2,783 | Territory 1: 2,693.","SELECT 
+    td.name AS territory,
+    SUM(fr.nrx_cnt) AS total_nrx
+FROM fact_rx AS fr
+JOIN hcp_dim AS h ON fr.hcp_id = h.hcp_id
+JOIN territory_dim AS td ON h.territory_id = td.territory_id
+GROUP BY td.name
+ORDER BY SUM(fr.nrx_cnt) DESC;",True,16057,1,None
+8,Which tier of doctors writes the most prescriptions?,"Tier C HCPs collectively write the most NRx (~3,154), but individually Tier A HCPs write more per doctor since there are fewer of them.","SELECT h.tier, SUM(r.trx_cnt) AS total_prescriptions
+FROM fact_rx r
+JOIN hcp_dim h ON r.hcp_id = h.hcp_id
+GROUP BY h.tier
+ORDER BY SUM(r.trx_cnt) DESC
+LIMIT 1;",True,29874,1,None
+9,What is the NRx by HCP tier?,"Tier C: 3,154 | Tier B: 2,847 | Tier A: 2,321.","SELECT h.tier, SUM(r.nrx_cnt) AS total_nrx
+FROM fact_rx r
+JOIN hcp_dim h ON r.hcp_id = h.hcp_id
+GROUP BY h.tier
+ORDER BY SUM(r.nrx_cnt) DESC",True,9471,1,None
+10,Who are the top 5 prescribing doctors?,"Dr Blake Garcia (128), Dr Phoenix Lee (117), Dr Morgan White (115), Dr Sydney Johnson (113), Dr Taylor Gonzalez (112) — all Rheumatology or Internal Medicine.","SELECT h.full_name,
+       SUM(r.trx_cnt + r.nrx_cnt) AS total_prescriptions
+FROM fact_rx r
+JOIN hcp_dim h ON r.hcp_id = h.hcp_id
+GROUP BY h.full_name
+ORDER BY SUM(r.trx_cnt + r.nrx_cnt) DESC
+LIMIT 5;",True,19037,2,None

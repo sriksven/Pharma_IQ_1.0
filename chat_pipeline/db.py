@@ -144,6 +144,8 @@ def save_message(
     chart_hint: dict = None,
     chart_data: list = None,
 ) -> int:
+    create_session(session_id)
+    
     conn = _get_conn()
     cursor = conn.execute(
         """INSERT INTO messages

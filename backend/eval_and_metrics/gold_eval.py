@@ -2,7 +2,7 @@ import os
 import sys
 import re
 import csv
-from datetime import datetime
+
 
 # Adjust Python path so we can import backend modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -52,7 +52,6 @@ def run_gold_eval(questions):
         
         try:
             import time
-            import random
             
             # We don't cache locally here to get raw performance
             start_t = time.time()

@@ -13,21 +13,29 @@ logger = JSONLogger()
 GROQ_JUDGE_MODEL = "openai/gpt-oss-120b"
 GROQ_FALLBACK_MODEL = "openai/gpt-oss-20b"
 
+def _truncate_reasoning(text: str) -> str:
+    if not text:
+        return ""
+    return text[:1000]
+
 def evaluate_answer(question: str, answer: str, sql_result: str | None = None) -> dict:
     """Score the generated answer on relevance, clarity, insight, and faithfulness to the data payload."""
     from app.config import settings
 
     prompt = (
-        "Given the following question, the data returned from the database, and the AI's final answer, score the answer.\n\n"
-        f"Question: {question}\n\nSQL Result Data:\n{sql_result}\n\nAnswer:\n{answer}\n\n"
-        "Return a JSON object with these keys:\n"
-        "- relevance (0-10): Does the answer specifically address the question?\n"
-        "- clarity (0-10): Is it clear and readable?\n"
-        "- insight (0-10): Does it offer a useful, logically sound observation?\n"
-        "- faithfulness (0-10): DEDUCT points severely if the answer hallucinates numbers, facts, or claims that are NOT present in the SQL Result Data. Does it strictly adhere to the data payload provided without making things up?\n"
+        "You are an evaluator for a pharmaceutical data assistant.\n\n"
+        "Given the following question, the data payload returned from the database, and the AI's final answer, score the answer's quality.\n\n"
+        f"Question: {question}\n\n"
+        f"SQL Data Payload:\n{sql_result}\n\n"
+        f"Assistant Answer:\n{answer}\n\n"
+        "Score the answer on these dimensions (0-10):\n"
+        "- relevance: Does the answer directly address the question?\n"
+        "- clarity: Is the answer easy to read and understand?\n"
+        "- insight: Does it provide useful context or highlight meaningful data?\n"
+        "- faithfulness: DEDUCT points if the answer claims something NOT in the Data Payload or hallucinates numbers.\n"
         "- reasoning: One sentence explanation.\n\n"
-        "Return only valid JSON. Example: "
-        "{\"relevance\": 9, \"clarity\": 8, \"insight\": 6, \"faithfulness\": 10, \"reasoning\": \"...\"}"
+        "Return ONLY a clean JSON object. Example:\n"
+        "{\"relevance\": 9, \"clarity\": 10, \"insight\": 7, \"faithfulness\": 10, \"reasoning\": \"...\"}"
     )
 
     messages = [{"role": "user", "content": prompt}]
@@ -38,7 +46,7 @@ def evaluate_answer(question: str, answer: str, sql_result: str | None = None) -
             model=GROQ_JUDGE_MODEL,
             messages=messages,
             temperature=0,
-            max_tokens=256,
+            max_tokens=512,
         )
         text = response.choices[0].message.content.strip()
         text = re.sub(r'```json\s*', '', text)
@@ -51,7 +59,7 @@ def evaluate_answer(question: str, answer: str, sql_result: str | None = None) -
                 "clarity": float(scores.get("clarity", 5)) / 10,
                 "insight": float(scores.get("insight", 5)) / 10,
                 "faithfulness": float(scores.get("faithfulness", 5)) / 10,
-                "reasoning": scores.get("reasoning", ""),
+                "reasoning": _truncate_reasoning(scores.get("reasoning", "")),
             }
     except Exception as exc:
         logger.log("answer_eval_error", {"step": "primary", "error": str(exc)})

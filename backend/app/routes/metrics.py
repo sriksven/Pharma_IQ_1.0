@@ -60,9 +60,9 @@ def metrics_summary():
         "failed_rate": round((1 - (qm["success_rate"] or 0)) * 100, 1), # Calculate failed_rate from success_rate
         "satisfaction_score": round((fb["satisfaction_score"] or 0) * 100, 1) if fb and fb["satisfaction_score"] is not None else None,
         "avg_sql_correctness": round((er["avg_sql_correctness"] or 0) * 10, 1) if er and er["avg_sql_correctness"] is not None else None,
-        "avg_answer_relevance": round((er["avg_answer_relevance"] or 0) * 10, 1),
-        "avg_faithfulness": round((er["avg_faithfulness"] or 0) * 10, 1) if er["avg_faithfulness"] is not None else None,
-        "avg_schema_precision": round((er["avg_schema_precision"] or 0) * 10, 1) if er["avg_schema_precision"] is not None else None,
+        "avg_answer_relevance": round((er["avg_answer_relevance"] or 0) * 10, 1) if er and er["avg_answer_relevance"] is not None else None,
+        "avg_faithfulness": round((er["avg_faithfulness"] or 0) * 10, 1) if er and er["avg_faithfulness"] is not None else None,
+        "avg_schema_precision": round((er["avg_schema_precision"] or 0) * 10, 1) if er and er["avg_schema_precision"] is not None else None,
     }
 
 

@@ -7,7 +7,7 @@ import uuid
 
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from pydantic import BaseModel
-from typing import Optional, List, Dict, Any
+
 
 from chat_pipeline.cache import get_cached, set_cached
 from chat_pipeline.retry import run_with_retry
@@ -25,8 +25,16 @@ from eval_and_metrics.monitoring.logger import JSONLogger
 from eval_and_metrics.eval.judge import run_eval
 from eval_and_metrics.monitoring.metrics import record_metrics
 
+import sqlite3
 router = APIRouter()
 logger = JSONLogger()
+
+
+def get_db():
+    from app.config import settings
+    conn = sqlite3.connect(settings.sqlite_db_path)
+    conn.row_factory = sqlite3.Row
+    return conn
 
 NO_ANSWER_MSG = (
     "I'm sorry, I don't have enough information in the dataset to answer that question. "
@@ -156,6 +164,11 @@ async def chat(req: ChatRequest, background_tasks: BackgroundTasks):
 
     latency_ms = int((time.time() - t_start) * 1000)
 
+    chart_data = []
+    if result_df is not None:
+        # Replace NaN with None for JSON compliance
+        chart_data = result_df.replace({float('nan'): None}).to_dict(orient="records")
+
     # Save assistant message
     message_id = save_message(
         session_id=session_id,
@@ -168,7 +181,7 @@ async def chat(req: ChatRequest, background_tasks: BackgroundTasks):
         sql_system_prompt=sql_system_prompt,
         explain_system_prompt=explain_system_prompt,
         chart_hint=chart_hint,
-        chart_data=result_df.to_dict(orient="records") if result_df is not None else [],
+        chart_data=chart_data,
     )
 
     # Update session title from first question
@@ -183,7 +196,7 @@ async def chat(req: ChatRequest, background_tasks: BackgroundTasks):
         "sql": sql,
         "provenance": provenance,
         "chart_hint": chart_hint,
-        "chart_data": result_df.to_dict(orient="records") if result_df is not None else [],
+        "chart_data": chart_data,
         "llm_used": llm_used,
         "fallback_reason": fallback_reason,
         "cache_hit": False,
@@ -244,9 +257,12 @@ def submit_feedback(message_id: int, request: FeedbackRequest):
                 "UPDATE messages SET user_feedback = ? WHERE id = ?",
                 (request.score, message_id)
             )
+            conn.commit()
             if conn.total_changes == 0:
                 raise HTTPException(status_code=404, detail="Message not found")
         return {"status": "success", "message_id": message_id, "score": request.score}
+    except HTTPException:
+        raise
     except Exception as e:
         logger.log("error_feedback", {"message_id": message_id, "error": str(e)})
         raise HTTPException(status_code=500, detail="Internal server error")

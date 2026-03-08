@@ -14,7 +14,7 @@ export async function sendMessage(sessionId, question) {
 }
 
 export async function rateMessage(messageId, score) {
-  const res = await fetch(`${BASE}/api/v1/chat/messages/${messageId}/feedback`, {
+  const res = await fetch(`${BASE}/api/v1/messages/${messageId}/feedback`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ score }),
