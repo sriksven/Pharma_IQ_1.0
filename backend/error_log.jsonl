@@ -1320,3 +1320,12 @@
 {"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T21:20:14.965090"}
 {"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T21:20:14.965625"}
 {"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T21:20:14.966135"}
+{"event": "table_loaded", "data": {"table": "account_dim", "rows": 24}, "ts": "2026-03-08T21:20:28.210500"}
+{"event": "table_loaded", "data": {"table": "date_dim", "rows": 518}, "ts": "2026-03-08T21:20:28.218461"}
+{"event": "table_loaded", "data": {"table": "fact_ln_metrics", "rows": 570}, "ts": "2026-03-08T21:20:28.221762"}
+{"event": "table_loaded", "data": {"table": "fact_payor_mix", "rows": 480}, "ts": "2026-03-08T21:20:28.224717"}
+{"event": "table_loaded", "data": {"table": "fact_rep_activity", "rows": 2962}, "ts": "2026-03-08T21:20:28.233209"}
+{"event": "table_loaded", "data": {"table": "fact_rx", "rows": 1530}, "ts": "2026-03-08T21:20:28.242944"}
+{"event": "table_loaded", "data": {"table": "hcp_dim", "rows": 90}, "ts": "2026-03-08T21:20:28.243983"}
+{"event": "table_loaded", "data": {"table": "rep_dim", "rows": 9}, "ts": "2026-03-08T21:20:28.244598"}
+{"event": "table_loaded", "data": {"table": "territory_dim", "rows": 3}, "ts": "2026-03-08T21:20:28.245218"}
