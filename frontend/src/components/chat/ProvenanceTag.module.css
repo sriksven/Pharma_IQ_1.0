@@ -20,4 +20,17 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     color: var(--text-muted);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    /* button reset */
+    appearance: none;
+    -webkit-appearance: none;
+    line-height: 1.5;
+}
+
+.tag:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-color: #c0d4ed;
 }

@@ -10,4 +10,11 @@ from datetime import datetime
 class JSONLogger:
     def log(self, event: str, data: dict):
         record = {"event": event, "data": data, "ts": datetime.utcnow().isoformat()}
-        print(json.dumps(record), file=sys.stderr)
+        dump = json.dumps(record)
+        print(dump, file=sys.stderr)
+        
+        try:
+            with open("/Users/sriks/Documents/Projects/PharmaIQ1.0/backend/error_log.jsonl", "a") as f:
+                f.write(dump + "\n")
+        except:
+            pass

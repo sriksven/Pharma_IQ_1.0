@@ -35,6 +35,8 @@ export default function MetricsPage() {
                         <Stat label="Failed rate" value={`${summary.failed_rate}%`} />
                         <Stat label="Avg SQL correctness" value={`${summary.avg_sql_correctness}/10`} />
                         <Stat label="Avg answer relevance" value={`${summary.avg_answer_relevance}/10`} />
+                        <Stat label="Avg faithfulness" value={summary.avg_faithfulness != null ? `${summary.avg_faithfulness}/10` : '--'} />
+                        <Stat label="Avg schema precision" value={summary.avg_schema_precision != null ? `${summary.avg_schema_precision}/10` : '--'} />
                     </div>
                 )}
 
@@ -76,9 +78,11 @@ export default function MetricsPage() {
                                 <tr>
                                     <th>SQL Correctness</th>
                                     <th>SQL Efficiency</th>
+                                    <th>Schema Precision</th>
                                     <th>Answer Relevance</th>
                                     <th>Answer Clarity</th>
                                     <th>Insight</th>
+                                    <th>Faithfulness</th>
                                     <th>Evaluated</th>
                                 </tr>
                             </thead>
@@ -87,9 +91,11 @@ export default function MetricsPage() {
                                     <tr key={i}>
                                         <td>{(e.sql_correctness * 10).toFixed(1)}</td>
                                         <td>{(e.sql_efficiency * 10).toFixed(1)}</td>
+                                        <td>{e.sql_schema_precision != null ? (e.sql_schema_precision * 10).toFixed(1) : '--'}</td>
                                         <td>{(e.answer_relevance * 10).toFixed(1)}</td>
                                         <td>{(e.answer_clarity * 10).toFixed(1)}</td>
                                         <td>{(e.answer_insight * 10).toFixed(1)}</td>
+                                        <td>{e.answer_faithfulness != null ? (e.answer_faithfulness * 10).toFixed(1) : '--'}</td>
                                         <td>{e.evaluated_at?.slice(0, 19)}</td>
                                     </tr>
                                 ))}

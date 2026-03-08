@@ -14,7 +14,7 @@ Recorded after every query (cache miss and cache hit both tracked):
 | input_tokens | INTEGER | Tokens sent to LLM |
 | output_tokens | INTEGER | Tokens returned by LLM |
 | retry_count | INTEGER | 0-3; number of SQL retries required |
-| llm_used | TEXT | "groq" or "openai" |
+| llm_used | TEXT | "groq" or "groq_fallback" |
 | cache_hit | INTEGER | 1 if served from cache |
 | tables_joined | INTEGER | Number of tables referenced in SQL |
 | session_turn_count | INTEGER | Number of messages in the session |
@@ -39,7 +39,7 @@ Recorded asynchronously after each query. Scores normalized 0-1 (multiply by 10 
 - `total_queries`
 - `avg_latency_ms`
 - `cache_hit_rate` (percent)
-- `fallback_rate` (percent using OpenAI)
+- `fallback_rate` (percent using fallback LLM)
 - `avg_retry_count`
 - `failed_rate` (percent)
 - `avg_sql_correctness` (out of 10)

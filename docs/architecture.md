@@ -11,7 +11,7 @@ FastAPI (port 8000)
   |
   +-- data_pipeline  -- CSV ingestion, DuckDB registration, registry.json
   +-- chat_pipeline  -- SQL gen, retry, provenance, explain, cache, history
-  +-- ml_pipeline    -- Evals, metrics, structured logging
+  +-- eval_and_metrics    -- Evals, metrics, structured logging
   +-- voice_pipeline -- STT (Whisper), TTS (OpenAI)
 ```
 
@@ -24,7 +24,7 @@ User question
   |-- Hit: return cached answer immediately
   |-- Miss: continue
   |
- Groq Llama 3 70B: generate SQL
+ Groq openai/gpt-oss-120b: generate SQL
   |
  DuckDB: execute SQL against CSV views
   |-- Error: feed error back to LLM, retry (up to 3 times)
@@ -34,8 +34,8 @@ User question
   |
  chart_hint: infer chart type from result shape
   |
- Groq Llama 3 70B: generate plain English explanation
-  |-- Failure: fallback to OpenAI GPT-4o, notify user
+ Groq llama-3.1-8b-instant: generate plain English explanation
+  |-- Failure: fallback to Groq openai/gpt-oss-20b, notify user
   |
  SQLite: save session and message
  Upstash Redis: write cache entry (1h TTL)
@@ -59,8 +59,8 @@ User question
 
 | Call | Model | Temperature |
 |---|---|---|
-| SQL generation | Groq Llama 3 70B | 0 |
-| Explanation | Groq Llama 3 70B | 0.3 |
-| SQL eval judge | Groq Llama 3 70B | 0 |
-| Answer eval judge | Groq Llama 3 70B | 0 |
-| Fallback (all) | OpenAI GPT-4o | same as above |
+| SQL generation | Groq openai/gpt-oss-120b | 0 |
+| Explanation | Groq llama-3.1-8b-instant | 0.3 |
+| SQL eval judge | Groq openai/gpt-oss-120b | 0 |
+| Answer eval judge | Groq openai/gpt-oss-120b | 0 |
+| Fallback (all) | Groq openai/gpt-oss-20b | same as above |

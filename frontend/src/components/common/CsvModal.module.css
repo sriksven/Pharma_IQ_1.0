@@ -1,0 +1,134 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+    backdrop-filter: blur(2px);
+}
+
+.modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    max-width: 92vw;
+    max-height: 82vh;
+    width: 900px;
+    overflow: hidden;
+    animation: slideUp 0.18s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--mono);
+    color: var(--text);
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: var(--radius);
+    transition: background 0.1s, color 0.1s;
+}
+
+.closeBtn:hover {
+    background: var(--surface-dim);
+    color: var(--text);
+}
+
+.body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.state {
+    padding: 32px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.meta {
+    font-size: 11px;
+    color: var(--text-faint);
+    padding: 8px 18px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.tableWrap {
+    overflow: auto;
+    flex: 1;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    white-space: nowrap;
+}
+
+.table th {
+    position: sticky;
+    top: 0;
+    background: var(--surface-dim);
+    padding: 8px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+    z-index: 1;
+}
+
+.table td {
+    padding: 7px 14px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 12px;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover td {
+    background: var(--surface-dim);
+}

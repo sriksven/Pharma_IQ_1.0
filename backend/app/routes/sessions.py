@@ -11,9 +11,17 @@ def list_sessions():
 
 @router.get("/sessions/{session_id}")
 def get_session(session_id: str):
+    import json
     messages = get_session_messages(session_id)
     if not messages:
         raise HTTPException(status_code=404, detail="Session not found.")
+        
+    for m in messages:
+        if m.get("chart_hint"):
+            m["chart_hint"] = json.loads(m["chart_hint"])
+        if m.get("chart_data"):
+            m["chart_data"] = json.loads(m["chart_data"])
+            
     return {"session_id": session_id, "messages": messages}
 
 

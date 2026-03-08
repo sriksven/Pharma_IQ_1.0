@@ -14,6 +14,7 @@ from app.routes import schema as schema_router
 from app.routes import chat as chat_router
 from app.routes import sessions as sessions_router
 from app.routes import metrics as metrics_router
+from app.routes import data as data_router
 
 
 app = FastAPI(title="Pharma_IQ_1.0 API", version="1.0.0")
@@ -30,6 +31,7 @@ app.include_router(schema_router.router, prefix="/api/v1")
 app.include_router(chat_router.router, prefix="/api/v1")
 app.include_router(sessions_router.router, prefix="/api/v1")
 app.include_router(metrics_router.router, prefix="/api/v1")
+app.include_router(data_router.router, prefix="/api/v1")
 
 
 @app.on_event("startup")

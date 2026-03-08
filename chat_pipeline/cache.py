@@ -11,7 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from ml_pipeline.monitoring.logger import JSONLogger
+from eval_and_metrics.monitoring.logger import JSONLogger
 
 logger = JSONLogger()
 

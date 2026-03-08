@@ -6,13 +6,13 @@ The core question-answering pipeline. Takes a user question and returns a plain 
 
 ## sql_generator.py
 
-Builds a system prompt containing the full schema from `registry.json` (tables, columns, row counts, relationships). Calls Groq Llama 3 70B at temperature 0. Returns raw SQL only.
+Builds a system prompt containing the full schema from `registry.json` (tables, columns, row counts, relationships). Calls Groq openai/gpt-oss-120b at temperature 0. Returns raw SQL only.
 
-Falls back to OpenAI GPT-4o if Groq raises an exception.
+Falls back to Groq openai/gpt-oss-20b if primary model raises an exception.
 
 ## retry.py
 
-Wraps SQL generation and DuckDB execution in a retry loop (up to 3 attempts). On SQL error, the error message is appended to conversation history so the LLM can correct itself.
+Wraps SQL generation and DuckDB execution in a retry loop (up to 3 attempts). On SQL error, the error message is appended to conversation history so the LLM can self-correct. Accepts `conversation_history` for multi-turn context, which is prepended before retry error messages.
 
 ## provenance.py
 
@@ -20,9 +20,9 @@ Parses the generated SQL using regex to extract table names from FROM and JOIN c
 
 ## explainer.py
 
-Second LLM call after SQL execution. Input: original question, the SQL that ran, and up to 20 rows of results as a markdown table. Output: plain English answer plus one proactive insight. Temperature 0.3.
+Second LLM call after SQL execution. Input: original question, the SQL that ran, up to 20 rows of results as a markdown table, and the last 6 messages from the session as conversation history. Output: plain English answer plus one proactive insight. Temperature 0.3. History enables follow-up questions to reference prior context.
 
-Falls back to OpenAI GPT-4o with a visible fallback_reason notice to the user.
+Falls back to Groq openai/gpt-oss-20b with a visible fallback_reason notice to the user.
 
 ## cache.py
 
@@ -34,7 +34,16 @@ SQLite persistence. Tables: `sessions`, `messages`, `eval_results`, `query_metri
 
 ## API
 
-- `POST /api/v1/chat` -- accepts `session_id` and `question`; returns `answer`, `sql`, `provenance`, `chart_hint`, `llm_used`, `cache_hit`, `latency_ms`
+- `POST /api/v1/chat` -- accepts `session_id` and `question`; returns `answer`, `sql`, `provenance`, `chart_hint`, `llm_used`, `cache_hit`, `latency_ms`. If SQL fails after all retries, returns a 200 with a friendly "I don't have that information" message instead of an error.
 - `GET /api/v1/sessions` -- list all sessions
 - `GET /api/v1/sessions/{id}` -- all messages in a session
 - `DELETE /api/v1/sessions/{id}` -- delete session and messages
+- `GET /api/v1/data/csv/{filename}` -- download a raw CSV from `data_pipeline/raw/` as an attachment
+
+## Conversation Memory
+
+Before each LLM call, the last 6 messages (3 user + 3 assistant turns) from the current session are fetched from SQLite and injected as prior context. This allows the system to correctly handle follow-up questions like:
+- "What is the nrx count for Cardiology?" → "10"
+- "Why is that number low?" → correctly references Cardiology nrx from the previous answer
+
+Cache hits are also re-attached to the current session's SQLite history so memory continues to work after a cache hit.

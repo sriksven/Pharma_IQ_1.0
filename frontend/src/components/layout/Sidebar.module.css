@@ -77,10 +77,24 @@
 }
 
 .tableItem {
+    display: block;
+    width: 100%;
     padding: 4px 8px;
     font-size: 12px;
     font-family: var(--mono);
     color: var(--text-muted);
+    text-decoration: none;
+    text-align: left;
+    background: none;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.1s, color 0.1s;
+}
+
+.tableItem:hover {
+    background: var(--surface-dim);
+    color: var(--accent);
 }
 
 .divider {

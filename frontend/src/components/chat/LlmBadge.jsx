@@ -3,13 +3,13 @@ import styles from './LlmBadge.module.css'
 export default function LlmBadge({ llmUsed, cacheHit, fallbackReason }) {
     return (
         <div className={styles.wrapper}>
-            {cacheHit && <span className="badge badge-cached">Cached</span>}
+            {!!cacheHit && <span className="badge badge-cached">Cached</span>}
             {llmUsed === 'groq' && !cacheHit && (
-                <span className="badge badge-info">Groq 70B</span>
+                <span className="badge badge-info">Groq 120B/8B</span>
             )}
-            {llmUsed === 'openai' && (
+            {llmUsed === 'groq_fallback' && (
                 <span className="badge badge-fallback" title={fallbackReason || ''}>
-                    OpenAI GPT-4o (fallback)
+                    Groq 20B (fallback)
                 </span>
             )}
         </div>

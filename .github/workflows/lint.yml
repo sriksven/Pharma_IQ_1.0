@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install ruff
-      - run: ruff check backend/ chat_pipeline/ data_pipeline/ ml_pipeline/ voice_pipeline/
+      - run: ruff check backend/ chat_pipeline/ data_pipeline/ eval_and_metrics/ voice_pipeline/
 
   lint-frontend:
     runs-on: ubuntu-latest

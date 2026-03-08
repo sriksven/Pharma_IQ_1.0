@@ -7,11 +7,11 @@ After each query completes, `judge.py` runs two evaluations asynchronously and w
 ### sql_eval.py
 
 - Rule-based: was the SQL executed without error?
-- LLM judge: correctness (0-10) and efficiency (0-10) scores from Groq Llama 3 70B.
+- LLM judge: correctness (0-10) and efficiency (0-10) scores from Groq openai/gpt-oss-120b.
 
 ### answer_eval.py
 
-- LLM judge: relevance, clarity, and insight scores (0-10 each) from Groq Llama 3 70B.
+- LLM judge: relevance, clarity, and insight scores (0-10 each) from Groq openai/gpt-oss-120b.
 - Scores are stored normalized to 0-1 in SQLite and displayed as 0-10 in the UI.
 
 ## Monitoring

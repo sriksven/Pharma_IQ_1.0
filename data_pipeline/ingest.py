@@ -5,7 +5,7 @@ Returns a list of table metadata dicts.
 
 import os
 import pandas as pd
-from ml_pipeline.monitoring.logger import JSONLogger
+from eval_and_metrics.monitoring.logger import JSONLogger
 
 logger = JSONLogger()
 

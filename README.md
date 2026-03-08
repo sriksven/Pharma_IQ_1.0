@@ -89,7 +89,7 @@ Pharma_IQ_1.0/
   backend/         FastAPI app, routes, config
   chat_pipeline/   SQL generation, retry, provenance, explainer, cache
   data_pipeline/   CSV ingestion, validation, relationship detection, registry
-  ml_pipeline/     Eval scoring, monitoring metrics, structured logger
+  eval_and_metrics/     Eval scoring, monitoring metrics, structured logger
   voice_pipeline/  Speech-to-text and text-to-speech
   frontend/        React + Vite UI
   data/raw/        CSV files (not committed)
@@ -105,7 +105,7 @@ See `.env.example` for all required keys.
 ```bash
 # Backend
 cd backend
-pytest ../data_pipeline/tests/ ../chat_pipeline/tests/ ../ml_pipeline/tests/ tests/ -v
+pytest ../data_pipeline/tests/ ../chat_pipeline/tests/ ../eval_and_metrics/tests/ tests/ -v
 
 # Frontend
 cd frontend

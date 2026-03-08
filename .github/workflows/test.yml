@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r backend/requirements.txt
-      - run: pytest data_pipeline/tests/ chat_pipeline/tests/ ml_pipeline/tests/ backend/tests/ -v
+      - run: pytest data_pipeline/tests/ chat_pipeline/tests/ eval_and_metrics/tests/ backend/tests/ -v
 
   test-frontend:
     runs-on: ubuntu-latest

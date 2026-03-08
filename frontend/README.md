@@ -1,16 +1,21 @@
-# React + Vite
+# PharmaIQ Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the React interface for PharmaIQ. It uses Vite as the build tool, and relies on standard CSS Modules for styling (no heavy UI frameworks like Tailwind or Bootstrap). 
 
-Currently, two official plugins are available:
+## Structure
+- `src/api/client.js` - Wrapper around the `fetch` API for all backend interaction.
+- `src/components/chat/` - The core chat mechanics. Includes the message bubbles, SQL markdown viewer, provenance tags, and LLM badges.
+- `src/components/charts/` - Auto-detecting chart components (Bar, Line, Doughnut, KPI, Data Table) using Recharts. Renders based on DuckDB output shape.
+- `src/pages/` - Includes the main `ChatPage.jsx` and the `MetricsPage.jsx` telemetry dashboard.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Aesthetics & Design Rules
+The UI is designed to look like a careful, functional engineering tool. It uses an off-white background (`#f7f6f3`), dark text, and the Inter typeface. Bright neon colors and unnecessary gradients are avoided.
 
-## React Compiler
+## Running Locally
+```bash
+npm install
+npm run dev
+```
+By default, the Vite server will run on `http://localhost:5173`. Make sure the FastAPI backend is running simultaneously on port `8000`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*For more details on the automated charting logic and frontend component hierarchy, please see the root `/docs/frontend.md` file.*

@@ -43,6 +43,8 @@ async def init_db():
             llm_used TEXT,
             cache_hit INTEGER,
             created_at TEXT,
+            sql_system_prompt TEXT,
+            explain_system_prompt TEXT,
             FOREIGN KEY (session_id) REFERENCES sessions(session_id)
         );
 
@@ -77,6 +79,37 @@ async def init_db():
         );
         """
     )
+    
+    try:
+        conn.execute("ALTER TABLE messages ADD COLUMN sql_system_prompt TEXT")
+    except sqlite3.OperationalError:
+        pass  # Column already exists
+        
+    try:
+        conn.execute("ALTER TABLE messages ADD COLUMN explain_system_prompt TEXT")
+    except sqlite3.OperationalError:
+        pass  # Column already exists
+
+    try:
+        conn.execute("ALTER TABLE messages ADD COLUMN chart_hint TEXT")
+    except sqlite3.OperationalError:
+        pass
+        
+    try:
+        conn.execute("ALTER TABLE messages ADD COLUMN chart_data TEXT")
+    except sqlite3.OperationalError:
+        pass
+        
+    try:
+        conn.execute("ALTER TABLE eval_results ADD COLUMN answer_faithfulness REAL")
+    except sqlite3.OperationalError:
+        pass
+        
+    try:
+        conn.execute("ALTER TABLE eval_results ADD COLUMN sql_schema_precision REAL")
+    except sqlite3.OperationalError:
+        pass
+
     conn.commit()
     conn.close()
 
@@ -99,12 +132,16 @@ def save_message(
     provenance: list = None,
     llm_used: str = None,
     cache_hit: bool = False,
+    sql_system_prompt: str = None,
+    explain_system_prompt: str = None,
+    chart_hint: dict = None,
+    chart_data: list = None,
 ) -> int:
     conn = _get_conn()
     cursor = conn.execute(
         """INSERT INTO messages
-           (session_id, role, content, sql_query, provenance, llm_used, cache_hit, created_at)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+           (session_id, role, content, sql_query, provenance, llm_used, cache_hit, created_at, sql_system_prompt, explain_system_prompt, chart_hint, chart_data)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (
             session_id,
             role,
@@ -114,6 +151,10 @@ def save_message(
             llm_used,
             int(cache_hit),
             datetime.utcnow().isoformat(),
+            sql_system_prompt,
+            explain_system_prompt,
+            json.dumps(chart_hint) if chart_hint else None,
+            json.dumps(chart_data) if chart_data else None,
         ),
     )
     message_id = cursor.lastrowid
@@ -125,7 +166,7 @@ def save_message(
 def get_sessions() -> list:
     conn = _get_conn()
     rows = conn.execute(
-        "SELECT session_id, created_at, title FROM sessions ORDER BY created_at DESC"
+        "SELECT session_id, created_at, title FROM sessions ORDER BY created_at DESC LIMIT 10"
     ).fetchall()
     conn.close()
     return [dict(r) for r in rows]

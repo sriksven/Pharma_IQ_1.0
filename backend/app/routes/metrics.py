@@ -25,7 +25,7 @@ def metrics_summary():
             COUNT(*) as total_queries,
             AVG(total_latency_ms) as avg_latency_ms,
             SUM(cache_hit) * 1.0 / NULLIF(COUNT(*), 0) as cache_hit_rate,
-            SUM(CASE WHEN llm_used = 'openai' THEN 1 ELSE 0 END) * 1.0
+            SUM(CASE WHEN llm_used = 'groq_fallback' THEN 1 ELSE 0 END) * 1.0
                 / NULLIF(COUNT(*), 0) as fallback_rate,
             AVG(retry_count) as avg_retry_count,
             SUM(failed) * 1.0 / NULLIF(COUNT(*), 0) as failed_rate
@@ -35,7 +35,9 @@ def metrics_summary():
     er = conn.execute(
         """SELECT
             AVG(sql_correctness) as avg_sql_correctness,
-            AVG(answer_relevance) as avg_answer_relevance
+            AVG(answer_relevance) as avg_answer_relevance,
+            AVG(answer_faithfulness) as avg_faithfulness,
+            AVG(sql_schema_precision) as avg_schema_precision
            FROM eval_results"""
     ).fetchone()
 
@@ -50,6 +52,8 @@ def metrics_summary():
         "failed_rate": round((qm["failed_rate"] or 0) * 100, 1),
         "avg_sql_correctness": round((er["avg_sql_correctness"] or 0) * 10, 1),
         "avg_answer_relevance": round((er["avg_answer_relevance"] or 0) * 10, 1),
+        "avg_faithfulness": round((er["avg_faithfulness"] or 0) * 10, 1) if er["avg_faithfulness"] is not None else None,
+        "avg_schema_precision": round((er["avg_schema_precision"] or 0) * 10, 1) if er["avg_schema_precision"] is not None else None,
     }
 
 

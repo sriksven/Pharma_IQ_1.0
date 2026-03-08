@@ -33,7 +33,7 @@ Each assistant response renders:
 2. Collapsible SQL block
 3. Auto-selected chart or data table
 4. Source file tags from provenance
-5. LLM badge (Groq 70B, OpenAI GPT-4o fallback, or Cached)
+5. LLM badge (Groq 120B/8B, Groq 20B fallback, or Cached)
 
 ## chart_hint
 

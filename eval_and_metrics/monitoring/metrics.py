@@ -5,7 +5,7 @@ Records per-query metrics to the query_metrics SQLite table.
 import sqlite3
 from datetime import datetime
 
-from ml_pipeline.monitoring.logger import JSONLogger
+from eval_and_metrics.monitoring.logger import JSONLogger
 
 logger = JSONLogger()
 

@@ -3,7 +3,7 @@ Validates loaded table metadata. Logs warnings for bad files, does not crash.
 """
 
 import pandas as pd
-from ml_pipeline.monitoring.logger import JSONLogger
+from eval_and_metrics.monitoring.logger import JSONLogger
 
 logger = JSONLogger()
 

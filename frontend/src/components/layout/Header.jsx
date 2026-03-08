@@ -8,7 +8,7 @@ export default function Header({ llmStatus }) {
                 <span className={styles.subtitle}>Natural language analytics over pharma sales data</span>
             </div>
             <div className={styles.right}>
-                <span className="badge badge-info">Groq Llama 3 70B</span>
+                <span className="badge badge-info">Groq 120B/8B</span>
                 <span className="badge">DuckDB</span>
             </div>
         </header>
