@@ -65,6 +65,7 @@ On server startup (inside `app/main.py`), the pipeline scans the raw `.csv` dire
 4.  `registry.py` - Writes `data/registry.json` with table names, columns, types, row counts, relationships, and load timestamp. Also provides `get_schema_prompt()` for LLM integration.
 
 **Testing (`data_pipeline/tests/`):** 
+*(Run automatically on every Push and Pull Request via `.github/workflows/test.yml`)*
 -   `test_ingest.py`: Ensures all tables load correctly without crashing.
 -   `test_registry.py`: Validates the exact JSON structure of the built registry.
 -   `test_relationship_detector.py`: Verifies that overlapping columns (like `hcp_id`) map correctly between fact and dimension tables.
@@ -93,6 +94,7 @@ This is the core execution loop. It handles caching, prompt engineering, contact
 7.  `db.py` - Interacts with the local SQLite storage to pull previous conversation turns (enabling multi-turn chat) and saves new messages.
 
 **Testing (`chat_pipeline/tests/`):**
+*(Run automatically on every Push and Pull Request via `.github/workflows/test.yml`)*
 -   `test_sql_validator.py`: Ensures hallucinated tables/columns are caught and syntax is verified.
 -   `test_cache.py`: Verifies deterministic hashing (so asking the exact same question doesn't waste LLM tokens).
 -   `test_provenance.py`: Tests regex extraction of table names from complex SQL joins to power UI source tags.
@@ -103,6 +105,7 @@ The UI overlay establishes a real-time WebRTC connection to a LiveKit cloud serv
 `Microphone ➔ LiveKit WebRTC ➔ Silero VAD (Detects when user stops speaking) ➔ Deepgram Nova-3 (Speech to Text) ➔ PharmaIQ Backend API (Generates SQL & Answer) ➔ Deepgram Aura (Text to Speech) ➔ LiveKit Data Channel (Syncs text to UI bubbles) ➔ User Hears Response`.
 
 **Testing (`voice_pipeline/tests/`):**
+*(Run automatically on every Push and Pull Request via `.github/workflows/test.yml`)*
 - `test_smoke.py`: Tests the initialization of the `PharmaIQLLM` agent wrapper to ensure metadata (like `message_id` and `llm_used`) is correctly broadcasted back to the UI state.
 
 ---
@@ -139,6 +142,11 @@ Because SQL correctness doesn't always guarantee a *good human answer*, `async_j
 ### D. The "Gold Eval" (Offline Regression Testing)
 *   **What it is & How it Works:** Before merging any new code to `main` (or swapping the Groq LLM for a newer model), developers run `evaluate.py`. It executes the entire chat pipeline against all questions in the Gold Dataset. If accuracy drops below 95%, the build fails. It guarantees that we never accidentally deploy a software update that corrupts how `fact_rx.csv` joins to `hcp_dim.csv`.
 
+### E. GitHub Actions (CI/CD)
+To guarantee pipeline health, two automated workflows execute in the cloud on every push or Pull Request:
+*   `.github/workflows/lint.yml`: Runs the `ruff` linter across all Python backend files and `npm run lint` across the React frontend.
+*   `.github/workflows/test.yml`: Spins up a fresh Ubuntu server, installs all dependencies, and executes the `pytest` test suite across all pipelines (`data_pipeline/tests/`, `chat_pipeline/tests/`, `eval_and_metrics/tests/`, and `voice_pipeline/tests/`) followed by `npm test` for the React components.
+
 ---
 
 ## 6. End-to-End Example Flow: "How many doctors are there?"
@@ -146,8 +154,8 @@ Because SQL correctness doesn't always guarantee a *good human answer*, `async_j
 Let's map out exactly what happens under the hood when a user types (or speaks) a simple question:
 
 1. **Frontend Request**: The React `SendMessage` API hits `POST /api/v1/chat`.
-2. **Cache Check (Redis)**: The system checks if anyone has asked this exact semantic question recently.
-   - *If Yes*: It returns the saved answer instantly.
+2. **Cache Check (Redis)**: The system hashes the question and checks Upstash Redis to see if anyone has asked this exact semantic question recently.
+   - *If Yes*: It returns the cached SQL & written answer instantly, entirely bypassing the LLM step and dropping latency to near-zero.
    - *If No*: It proceeds to the primary pipeline.
 3. **Context Gathering**: The backend fetches the last 5 chat messages from SQLite to establish multi-turn conversation history.
 4. **Prompt Construction**: The backend merges the user's question, the conversation history, and the complete DuckDB schema registry (`registry.json`) into a massive System Prompt. This json contains all table names, column names, column datatypes, and pre-detected foreign key relationships.
@@ -162,12 +170,12 @@ Let's map out exactly what happens under the hood when a user types (or speaks) 
    - If it's invalid (e.g., hallucinates a column), it is sent back to the LLM with the error for up to 3 retries.
    - If Groq fails 3 times, the **OpenAI GPT-4o Fallback** is triggered to execute a final, high-reasoning attempt.
 7. **Execution**: The validated SQL query is run against the in-memory DuckDB engine. 
-   - *Output*: `[{"total_doctors": 15420}]`.
+   - *Output*: `[{"total_doctors": 90}]`.
 8. **Provenance & Chart Hinting**: 
    - Regex scans the raw SQL to identify which tables were used (attaching `hcp_dim.csv` as a clickable source badge).
    - Data outputs are recursively analyzed to detect if a specific Chart (Bar/KPI/Table) should be recommended to the UI.
-9. **Explanation Generation**: A second LLM call translates the raw JSON data output into a friendly human response: *"There are currently 15,420 unique healthcare providers registered in the database."*
-10. **UI Display**: The React frontend receives the payload and renders the message bubble, the large KPI integer (15k), the SQL toggle block, the source badge, and the Thumbs feedback buttons simultaneously.
+9. **Explanation Generation**: A second LLM call translates the raw JSON data output into a friendly human response: *"There are currently 90 unique healthcare providers registered in the database."*
+10. **UI Display**: The React frontend receives the payload and renders the message bubble, the large KPI integer (90), the SQL toggle block, the source badge, and the Thumbs feedback buttons simultaneously.
 11. **Background Async Sync**: 
     - The interaction is saved to SQLite.
     - An Async Task assigns it scores (Faithfulness: 10/10, Relevance: 10/10) to update the `/metrics` dashboard without blocking the user's view.
