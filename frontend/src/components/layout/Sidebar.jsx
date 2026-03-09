@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { getSessions, getTables, deleteSession } from '../../api/client'
+import { getSessions, getTables, deleteSession, uploadCsv } from '../../api/client'
 import CsvModal from '../common/CsvModal'
 import styles from './Sidebar.module.css'
 
@@ -8,6 +8,8 @@ export default function Sidebar({ onNewChat, currentSessionId }) {
     const [sessions, setSessions] = useState([])
     const [tables, setTables] = useState([])
     const [activeCsv, setActiveCsv] = useState(null)
+    const [isUploading, setIsUploading] = useState(false)
+    const fileInputRef = useRef(null)
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -37,6 +39,29 @@ export default function Sidebar({ onNewChat, currentSessionId }) {
         loadSessions()
         if (currentSessionId === sessionId) {
             onNewChat()
+        }
+    }
+
+    const handleUploadClick = () => {
+        fileInputRef.current?.click()
+    }
+
+    const handleFileChange = async (e) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        setIsUploading(true)
+        try {
+            await uploadCsv(file)
+            await loadTables() // Refresh the sidebar list
+        } catch (err) {
+            console.error('Upload failed:', err)
+            alert('Upload failed: ' + err.message)
+        } finally {
+            setIsUploading(false)
+            if (fileInputRef.current) {
+                fileInputRef.current.value = '' // Reset input
+            }
         }
     }
 
@@ -75,7 +100,24 @@ export default function Sidebar({ onNewChat, currentSessionId }) {
                 <div className={styles.divider} />
 
                 <div className={styles.section}>
-                    <div className={styles.sectionLabel}>Data sources</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div className={styles.sectionLabel}>Data sources</div>
+                        <button
+                            className={styles.uploadBtn}
+                            onClick={handleUploadClick}
+                            disabled={isUploading}
+                            title="Upload new CSV"
+                        >
+                            {isUploading ? '⬆️...' : '➕'}
+                        </button>
+                        <input
+                            type="file"
+                            accept=".csv"
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            style={{ display: 'none' }}
+                        />
+                    </div>
                     {tables.length === 0 && (
                         <div className={styles.empty}>No tables loaded</div>
                     )}

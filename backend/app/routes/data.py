@@ -5,8 +5,11 @@ GET /api/v1/data/json/{filename}  -- Return CSV rows as JSON for in-UI preview
 
 import os
 import csv
-from fastapi import APIRouter, HTTPException
+import shutil
+from fastapi import APIRouter, HTTPException, UploadFile, File
 from fastapi.responses import FileResponse
+from data_pipeline.ingest import load_all_tables
+from data_pipeline.registry import build_registry
 
 router = APIRouter()
 
@@ -52,3 +55,23 @@ def preview_csv(filename: str):
     columns = list(rows[0].keys()) if rows else []
     return {"filename": filename, "columns": columns, "rows": rows}
 
+
+@router.post("/data/upload")
+async def upload_csv(file: UploadFile = File(...)):
+    """Upload a new CSV file and dynamically re-register all data sources."""
+    if not file.filename.endswith(".csv"):
+        raise HTTPException(status_code=400, detail="Only .csv files are allowed.")
+    
+    file_path = os.path.join(DATA_DIR, file.filename)
+    
+    try:
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+            
+        # Re-trigger the ingestion pipeline
+        tables = load_all_tables(DATA_DIR)
+        build_registry(tables, DATA_DIR)
+        
+        return {"status": "success", "filename": file.filename, "tables_loaded": len(tables)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

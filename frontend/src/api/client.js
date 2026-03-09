@@ -79,3 +79,18 @@ export async function getMetricsEvals(limit = 50) {
   if (!res.ok) throw new Error('Failed to fetch eval metrics')
   return res.json()
 }
+
+export async function uploadCsv(file) {
+  const formData = new FormData()
+  formData.append('file', file)
+
+  const res = await fetch(`${BASE}/api/v1/data/upload`, {
+    method: 'POST',
+    body: formData,
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || 'Failed to upload CSV')
+  }
+  return res.json()
+}

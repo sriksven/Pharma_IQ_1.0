@@ -1,145 +1,91 @@
-# PharmaIQ 1.0
+# 🧬 PharmaIQ 1.0
 
-A natural language analytics assistant over structured pharmaceutical sales data. Ask questions in plain English. The system generates SQL, executes it against CSV files using DuckDB, and returns a plain English answer with an auto-rendered chart and provenance tags pointing back to the source data. Voice input is supported via a LiveKit real-time voice pipeline.
+![PharmaIQ Banner](https://img.shields.io/badge/PharmaIQ-1.0-blue?style=for-the-badge) ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python) ![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react) ![FastAPI](https://img.shields.io/badge/FastAPI-0.103+-009688?style=for-the-badge&logo=fastapi) ![DuckDB](https://img.shields.io/badge/DuckDB-Fast-yellow?style=for-the-badge)
 
-## Stack
+**PharmaIQ 1.0** is an intelligent, natural language analytics assistant designed specifically for pharmaceutical sales data. It allows users to ask plain English questions, instantly generating complex SQL queries executed against a blazing-fast in-memory DuckDB engine. 
 
-| Layer | Technology |
-|---|---|
-| Frontend | React + Vite |
-| Backend | FastAPI |
-| Query Engine | DuckDB |
-| Primary LLM | Groq |
-| Cache | Upstash Redis |
-| Chat History | SQLite |
-| Charts | Recharts |
-| Voice STT | Deepgram Nova-3 |
-| Voice TTS | Deepgram Aura |
-| Voice Transport | LiveKit (WebRTC) |
-| Config | pydantic-settings |
+The platform features a modern React frontend, a ChatGPT-style real-time voice interface powered by Deepgram and LiveKit, dynamic on-the-fly CSV uploads, and a robust multi-LLM routing system (Groq Llama 3 & OpenAI GPT-4o) ensuring high speed and absolute accuracy.
 
-## Quick Start
+---
 
-### 1. Clone and set up environment
+## ✨ Key Features
 
+- 🗣️ **Real-Time Voice UI**: A highly responsive, full-screen audio interface using **Deepgram Nova-3 / Aura** and **LiveKit** WebRTC. Speak to the agent and hear instant, contextual responses.
+- ⚡ **Lightning Fast Analytics**: Uses **Groq's Llama 3 70B** to generate SQL in milliseconds, executing it instantly against **DuckDB**. 
+- 🛡️ **Self-Healing SQL**: If Groq hallucinates a column, an autonomous **OpenAI GPT-4o** fallback agent steps in to debug and correct the query seamlessly.
+- 📁 **Dynamic Data Uploads**: Drag and drop new `.csv` datasets (like Prescriptions, Rep Activity, HCPs) directly into the UI. The backend automatically maps the schema to DuckDB—no server restart required.
+- 📈 **Smart Data Viz**: Automatically interprets query outputs to generate Recharts-powered KPIs, Bar Charts, and Tables.
+- 🔄 **Evaluation & RLHF Ready**: Every interaction is evaluated for faithfulness and relevance by an LLM judge, and user Feedback (+1/-1) is collected to prep for future **Direct Preference Optimization (DPO)** fine-tuning.
+
+---
+
+## 📚 Documentation
+For a deep dive into the architecture, multi-LLM routing, testing strategies, and a step-by-step breakdown of how a user question turns into a chart, please read the comprehensive overview:
+
+👉 **[Read the Full Technical Overview & Architecture Guide](docs/overview.md)**
+
+👉 **[View the RLHF Fine-Tuning Future Plan](docs/future_rlhf_plan.md)**
+
+---
+
+## 🛠️ The Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| **Frontend** | React + Vite + CSS Modules | High-performance, reactive UI. |
+| **Backend** | FastAPI (Python) | Async API routing and execution loops. |
+| **Query Engine** | DuckDB | In-memory massive parallel SQL execution over CSVs. |
+| **Primary LLMs** | Groq (Llama 3 70B) | Ultra-low latency SQL Generation & Explanation. |
+| **Fallback LLMs** | OpenAI (GPT-4o) | Complex reasoning and autonomous query fixing. |
+| **Cache & State** | SQLite + Upstash Redis | Semantic caching and persistent interaction history. |
+| **Voice Agents** | Deepgram + LiveKit | Sub-second STT/TTS via WebRTC data channels. |
+
+---
+
+## 🚀 Quick Start (Local Development)
+
+### 1. Clone & Configure
 ```bash
 git clone <repo>
 cd PharmaIQ1.0
 cp .env.example .env
-# Fill in API keys -- see Environment Variables below
 ```
+*You must populate the `.env` file with your `GROQ_API_KEY`, `OPENAI_API_KEY`, `DEEPGRAM_API_KEY`, `UPSTASH_*`, and `LIVEKIT_*` credentials. See `docs/overview.md` for details.*
 
-### 2. Backend
-
+### 2. Start the Backend API
 ```bash
 cd backend
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-```
-
-Place CSV files in `data_pipeline/raw/`. Then start the server:
-
-```bash
 uvicorn app.main:app --reload
 ```
+*The API runs at `http://localhost:8000`. Validates schemas and maps DuckDB views on boot.*
 
-The API runs at `http://localhost:8000`. Health check: `GET /health`.
-
-### 3. Frontend
-
+### 3. Start the Frontend UI
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
+*The UI runs at `http://localhost:5173`.*
 
-The UI runs at `http://localhost:5173`.
-
-### 4. Voice agent (optional)
-
+### 4. Start the Voice Worker (Optional)
+In a third terminal window at the project root:
 ```bash
-LIVEKIT_URL=wss://pharma-hleoc954.livekit.cloud \
-LIVEKIT_API_KEY=APIUC22RKvcMQW9 \
-LIVEKIT_API_SECRET=Bd8iGautRwGF0Jlm5fOwonvbByU5NEHC2Mgz7nJ9VNC \
-OPENAI_API_KEY=... \
-DEEPGRAM_API_KEY=... \
-    python -m voice_pipeline.livekit_agent dev
+DEEPGRAM_API_KEY=your_key LIVEKIT_URL=your_wss LIVEKIT_API_KEY=your_key LIVEKIT_API_SECRET=your_secret python -m voice_pipeline.livekit_agent dev
 ```
 
-See `voice_pipeline/README.md` for details.
+---
 
-## Data
+## 🧪 Running Evaluations & Tests
+The project features a strict **"Gold Eval"** regression suite to ensure new LLMs or code modifications do not degrade SQL generation accuracy. 
 
-Drop CSV files into `data_pipeline/raw/`. On startup, the backend:
-
-1. Validates each file.
-2. Auto-detects foreign key relationships by shared column names.
-3. Registers all files as DuckDB views.
-4. Writes `data_pipeline/registry.json` with schema and relationships.
-
-Expected tables: `fact_rx`, `hcp_dim`, `account_dim`, `territory_dim`, `rep_dim`, `date_dim`, `fact_rep_activity`, `fact_payor_mix`, `fact_ln_metrics`.
-
-## API Endpoints
-
-```
-GET    /health
-GET    /api/v1/schema
-GET    /api/v1/tables
-POST   /api/v1/chat
-GET    /api/v1/sessions
-GET    /api/v1/sessions/{id}
-DELETE /api/v1/sessions/{id}
-GET    /api/v1/metrics/summary
-GET    /api/v1/metrics/queries
-GET    /api/v1/metrics/evals
-POST   /api/v1/voice/transcribe
-POST   /api/v1/voice/speak
-POST   /api/v1/voice/token
-```
-
-## Project Structure
-
-```
-PharmaIQ1.0/
-  backend/          FastAPI app, routes, config
-  chat_pipeline/    SQL generation, retry, provenance, explainer, cache
-  data_pipeline/    CSV ingestion, validation, relationship detection, registry
-  eval_and_metrics/ Eval scoring, monitoring metrics, structured logger
-  voice_pipeline/   LiveKit agent, STT, TTS (see voice_pipeline/README.md)
-  frontend/         React + Vite UI
-  data_pipeline/raw/  CSV files (not committed)
-  docs/             Full documentation per subsystem
-```
-
-## Environment Variables
-
-See `.env.example` for all required keys. Key variables:
-
-| Variable | Description |
-|---|---|
-| `GROQ_API_KEY` | Groq API key for SQL generation |
-| `OPENAI_API_KEY` | OpenAI key for REST STT/TTS fallback |
-| `DEEPGRAM_API_KEY` | Deepgram API key for LiveKit STT/TTS |
-| `UPSTASH_REDIS_URL` | Upstash Redis URL for query caching |
-| `UPSTASH_REDIS_TOKEN` | Upstash Redis token |
-| `DATA_DIR` | Absolute path to CSV directory |
-| `SQLITE_DB_PATH` | Absolute path to SQLite database file |
-| `LIVEKIT_URL` | LiveKit server WebSocket URL |
-| `LIVEKIT_API_KEY` | LiveKit API key |
-| `LIVEKIT_API_SECRET` | LiveKit API secret |
-
-## Running Tests
-
+To run the entire suite (Data Pipeline, Chat Pipeline, Validators, and Voice Smoke Tests):
 ```bash
-# From project root
 export PYTHONPATH=$(pwd):$(pwd)/backend
 pytest data_pipeline/tests/ chat_pipeline/tests/ eval_and_metrics/tests/ backend/tests/ voice_pipeline/tests/ -v
-
-# Frontend
-cd frontend && npm test
 ```
 
-## Documentation
-
-See the `docs/` folder for detailed documentation on each subsystem. See `voice_pipeline/README.md` for the voice pipeline.
+---
+*Built for modern pharma analytics.*
