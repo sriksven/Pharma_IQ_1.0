@@ -4,7 +4,7 @@
 
 **PharmaIQ 1.0** is an intelligent, natural language analytics assistant designed specifically for pharmaceutical sales data. It allows users to ask plain English questions, instantly generating complex SQL queries executed against a blazing-fast in-memory DuckDB engine. 
 
-The platform features a modern React frontend, a ChatGPT-style real-time voice interface powered by Deepgram and LiveKit, dynamic on-the-fly CSV uploads, and a robust multi-LLM routing system (Groq Llama 3 & OpenAI GPT-4o) ensuring high speed and absolute accuracy.
+The platform features a modern React frontend, a ChatGPT-style real-time voice interface powered by Deepgram and LiveKit, dynamic on-the-fly CSV uploads, and a robust multi-LLM routing system (Groq Llama 3 & `openai/gpt-oss-20b` fallback) ensuring high speed and absolute accuracy.
 
 ---
 
@@ -12,7 +12,7 @@ The platform features a modern React frontend, a ChatGPT-style real-time voice i
 
 -  **Real-Time Voice UI**: A highly responsive, full-screen audio interface using **Deepgram Nova-3 / Aura** and **LiveKit** WebRTC. Speak to the agent and hear instant, contextual responses.
 -  **Lightning Fast Analytics**: Uses **Groq's Llama 3 70B** to generate SQL in milliseconds, executing it instantly against **DuckDB**. 
--  **Self-Healing SQL**: If Groq hallucinates a column, an autonomous **OpenAI GPT-4o** fallback agent steps in to debug and correct the query seamlessly.
+-  **Self-Healing SQL**: If the primary model hallucinates a column, an autonomous **`openai/gpt-oss-20b`** fallback agent steps in to debug and correct the query seamlessly.
 -  **Dynamic Data Uploads**: Drag and drop new `.csv` datasets (like Prescriptions, Rep Activity, HCPs) directly into the UI. The backend automatically cleans the data and maps the schema to DuckDB—no server restart required.
 -  **Smart Data Viz**: Automatically interprets query outputs to generate Recharts-powered KPIs, Bar Charts, and Tables.
 -  **Evaluation & RLHF Ready**: Every interaction is evaluated for faithfulness and relevance by an LLM judge, and user Feedback (+1/-1) is collected to prep for future **Direct Preference Optimization (DPO)** fine-tuning.
@@ -35,8 +35,8 @@ For a deep dive into the architecture, multi-LLM routing, testing strategies, an
 | **Frontend** | React + Vite + CSS Modules | High-performance, reactive UI. |
 | **Backend** | FastAPI (Python) | Async API routing and execution loops. |
 | **Query Engine** | DuckDB | In-memory massive parallel SQL execution over cleaned tables. |
-| **Primary LLMs** | Groq (Llama 3 70B) | Ultra-low latency SQL Generation & Explanation. |
-| **Fallback LLMs** | OpenAI (GPT-4o) | Complex reasoning and autonomous query fixing. |
+| **Primary LLMs** | Groq (Llama 3 70B & gpt-oss-120b) | Ultra-low latency SQL Generation & Explanation. |
+| **Fallback LLMs** | `openai/gpt-oss-20b` | Complex reasoning and autonomous query fixing. |
 | **Cache & State** | SQLite + Upstash Redis | Semantic caching and persistent interaction history. |
 | **Voice Agents** | Deepgram + LiveKit | Sub-second STT/TTS via WebRTC data channels. |
 

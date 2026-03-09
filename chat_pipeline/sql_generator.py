@@ -1,6 +1,6 @@
 """
-SQL generation via Groq llama-3.3-70b-versatile.
-Falls back to OpenAI GPT-4o if Groq fails.
+SQL generation via Groq.
+Falls back to openai/gpt-oss-20b if primary model fails.
 """
 
 import os

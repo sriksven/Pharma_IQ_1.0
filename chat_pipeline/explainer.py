@@ -1,6 +1,6 @@
 """
-Generates plain English answers from SQL results using Groq Llama 3 70B.
-Falls back to OpenAI GPT-4o if Groq fails.
+Generates plain English answers from SQL results using Groq.
+Falls back to openai/gpt-oss-20b if primary model fails.
 """
 
 import os

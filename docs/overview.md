@@ -41,9 +41,9 @@ To run the full stack locally across three terminal tabs:
 
 ## 3. The LLM Strategy
 We use a multi-LLM routing strategy to balance speed, cost, and complex reasoning:
-- **Primary SQL Generator**: **Groq `llama-3.3-70b-versatile`** (or similar Llama3 models). Hosted on Groq's specialized hardware for extreme low-latency processing.
-- **Answer Explainer**: Groq Llama 3 (Runs in parallel to format the final English response).
-- **Fallback LLM**: **OpenAI `gpt-4o`**. If the Groq model hallucinates or generates invalid SQL 3 times in a row, the request falls back to GPT-4o, which is slower but possesses stronger complex reasoning to fix broken queries.
+- **Primary SQL Generator**: **`openai/gpt-oss-120b`** (accessed via the Groq client). Hosted for extreme low-latency processing.
+- **Answer Explainer**: **`openai/gpt-oss-120b`** (Runs in parallel to format the final English response).
+- **Fallback LLM**: **`openai/gpt-oss-20b`** (accessed via the Groq client). If the primary model hallucinates or generates invalid SQL, the request falls back to this model to fix broken queries.
 - **Voice Models**: **Deepgram** models (`Nova-3` for STT, `Aura` for TTS) are used exclusively in the voice pipeline to minimize transcription latency drastically compared to standard OpenAI Whisper.
 
 ---
@@ -116,22 +116,23 @@ To ensure absolute reliability in a pharmaceutical context, PharmaIQ 1.0 continu
 
 **File Breakdown:**
 
-1.  `eval/golden_dataset.py` - Contains hundreds of complex "Gold Standard" pharmaceutical questions, paired perfectly with their known, human-verified SQL queries and database results.
-2.  `eval/gold_eval.py` - The execution script that runs the entire chat pipeline against `golden_dataset.py`. It compares the generated SQL against the verified Gold SQL to track accuracy/regression across pipeline or LLM changes.
-3.  `eval/async_judge.py` - The background "LLM Judge" worker. After a user gets their answer in the UI, this script asynchronously scores the query (from 1-10) on Relevance and Faithfulness without blocking the API.
-4.  `monitoring/logger.py` - Structured JSON logging utility used across the app to emit clean telemetry events (like `chat_query_complete`, `table_loaded`, `llm_fallback_triggered`).
-5.  `monitoring/metrics_db.py` - Manages inserts into the SQLite metrics tables to permanently store the telemetry from `logger.py` and the 1-10 scores from the `async_judge.py`.
+1.  `docs/sample_questions.md` - Contains dozens of complex "Gold Standard" pharmaceutical questions and expected logical answers used for evaluation.
+2.  `backend/eval_and_metrics/gold_eval.py` - The execution script that runs the entire chat pipeline against `sample_questions.md`. It tracks Execution Success Rate and Latency to catch regressions across pipeline or LLM changes.
+3.  `eval_and_metrics/eval/judge.py` - The primary LLM evaluation orchestrator natively integrated into the chat flow. After each query, it instantly runs `sql_eval.py` and `answer_eval.py`.
+4.  `eval_and_metrics/eval/sql_eval.py` & `eval_and_metrics/eval/answer_eval.py` - LLM-as-a-Judge scripts that score generated queries (Correctness, Efficiency, Schema Precision) and answers (Relevance, Clarity, Insight, Faithfulness).
+5.  `eval_and_metrics/monitoring/logger.py` - Structured JSON logging utility used across the app to emit clean telemetry events.
+6.  `eval_and_metrics/monitoring/metrics.py` - Manages backend API endpoints to fetch metrics data representing the dashboard statistics.
 
 ### A. Performance Metrics (Telemetry)
 Captured instantly on the backend for every single query to monitor system health and latency.
 *   **Total Latency (ms):** The end-to-end time from receiving the HTTP request to returning the final JSON. Crucial for monitoring Groq's streaming speed.
 *   **Cache Hit Rate:** The percentage of queries intercepted by Upstash Redis. *Why we track it:* To reduce expensive LLM tokens for identical, repeatedly asked questions.
-*   **Fallback Rate:** How often the system is forced to abandon the fast Groq Llama 3 model and utilize the slower, high-reasoning OpenAI GPT-4o model to fix a syntax error.
+*   **Fallback Rate:** How often the system is forced to abandon the fast primary model and utilize the fallback generative model to fix a syntax error.
 *   **Retry Count:** How many times the generated SQL failed local DuckDB validation and had to be passed back to the LLM to fix hallucinated column names.
 *   **Success Rate:** The percentage of questions that resulted in a successfully executed SQL query and valid answer.
 
 ### B. LLM Judge Metrics (The "Vibe Check")
-Because SQL correctness doesn't always guarantee a *good human answer*, `async_judge.py` takes the user's prompt, the generated SQL, and the final English answer, and passes them to a secondary "LLM Judge" to score them exclusively from 1 to 10:
+Because SQL correctness doesn't always guarantee a *good human answer*, `judge.py` evaluates the user's prompt, the generated SQL, and the final English answer exclusively from 1 to 10:
 *   **SQL Correctness / Schema Precision:** *How:* The judge compares the generated SQL against the injected `registry.json` schema. *Why:* To ensure the LLM didn't hallucinate a column that doesn't exist, and that it actually joined the correct dimensions.
 *   **Answer Relevance:** *How:* The judge evaluates if the final English explanation actually addresses the user's original plain-english question. *Why:* To catch edge cases where the SQL query was mathematically correct, but the LLM provided an irrelevant summary.
 *   **Avg Faithfulness:** *How:* The judge strictly compares the raw JSON output of the SQL query against the final English answer. *Why:* This is a critical hallucination check. If the SQL returned `[{"sales": 500}]` but the English answer claims "Sales were 1,500", the faithfulness score tanks to 0.
@@ -140,7 +141,7 @@ Because SQL correctness doesn't always guarantee a *good human answer*, `async_j
 *   **Thumbs Up  / Thumbs Down :** Calculated strictly from the user's clicks on the frontend UI. *Why:* This serves as explicit human preference data. If an answer gets a Thumbs Down despite having a 10/10 Judge score, it indicates our prompt engineering or Golden Dataset is flawed. This raw data feeds directly into our future **Direct Preference Optimization (DPO)** pipeline to fine-tune open-source models (see Section 7).
 
 ### D. The "Gold Eval" (Offline Regression Testing)
-*   **What it is & How it Works:** Before merging any new code to `main` (or swapping the Groq LLM for a newer model), developers run `evaluate.py`. It executes the entire chat pipeline against all questions in the Gold Dataset. If accuracy drops below 95%, the build fails. It guarantees that we never accidentally deploy a software update that corrupts how `fact_rx.csv` joins to `hcp_dim.csv`.
+*   **What it is & How it Works:** Developers can run `backend/eval_and_metrics/gold_eval.py`. It extracts question/expected answer pairs directly from `docs/sample_questions.md`, runs the live Chat Pipeline logic (bypassing the cache), and outputs a `gold_eval_results.csv` tracking execution success, retry counts, and processing latency.
 
 ### E. GitHub Actions (CI/CD)
 To guarantee pipeline health, two automated workflows execute in the cloud on every push or Pull Request:
@@ -168,7 +169,7 @@ Let's map out exactly what happens under the hood when a user types (or speaks) 
 6. **SQL Validation & Retry Loop**: 
    - The query is intercepted and validated locally against the DuckDB schema. 
    - If it's invalid (e.g., hallucinates a column), it is sent back to the LLM with the error for up to 3 retries.
-   - If Groq fails 3 times, the **OpenAI GPT-4o Fallback** is triggered to execute a final, high-reasoning attempt.
+   - If the primary model fails 3 times, the fallback `openai/gpt-oss-20b` model (via Groq) is triggered to execute a final attempt.
 7. **Execution**: The validated SQL query is run against the in-memory DuckDB engine. 
    - *Output*: `[{"total_doctors": 90}]`.
 8. **Provenance & Chart Hinting**: 
