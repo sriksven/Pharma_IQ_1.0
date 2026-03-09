@@ -13,7 +13,7 @@ The platform features a modern React frontend, a ChatGPT-style real-time voice i
 -  **Real-Time Voice UI**: A highly responsive, full-screen audio interface using **Deepgram Nova-3 / Aura** and **LiveKit** WebRTC. Speak to the agent and hear instant, contextual responses.
 -  **Lightning Fast Analytics**: Uses **Groq's Llama 3 70B** to generate SQL in milliseconds, executing it instantly against **DuckDB**. 
 -  **Self-Healing SQL**: If Groq hallucinates a column, an autonomous **OpenAI GPT-4o** fallback agent steps in to debug and correct the query seamlessly.
--  **Dynamic Data Uploads**: Drag and drop new `.csv` datasets (like Prescriptions, Rep Activity, HCPs) directly into the UI. The backend automatically maps the schema to DuckDB—no server restart required.
+-  **Dynamic Data Uploads**: Drag and drop new `.csv` datasets (like Prescriptions, Rep Activity, HCPs) directly into the UI. The backend automatically cleans the data and maps the schema to DuckDB—no server restart required.
 -  **Smart Data Viz**: Automatically interprets query outputs to generate Recharts-powered KPIs, Bar Charts, and Tables.
 -  **Evaluation & RLHF Ready**: Every interaction is evaluated for faithfulness and relevance by an LLM judge, and user Feedback (+1/-1) is collected to prep for future **Direct Preference Optimization (DPO)** fine-tuning.
 
@@ -34,7 +34,7 @@ For a deep dive into the architecture, multi-LLM routing, testing strategies, an
 |---|---|---|
 | **Frontend** | React + Vite + CSS Modules | High-performance, reactive UI. |
 | **Backend** | FastAPI (Python) | Async API routing and execution loops. |
-| **Query Engine** | DuckDB | In-memory massive parallel SQL execution over CSVs. |
+| **Query Engine** | DuckDB | In-memory massive parallel SQL execution over cleaned tables. |
 | **Primary LLMs** | Groq (Llama 3 70B) | Ultra-low latency SQL Generation & Explanation. |
 | **Fallback LLMs** | OpenAI (GPT-4o) | Complex reasoning and autonomous query fixing. |
 | **Cache & State** | SQLite + Upstash Redis | Semantic caching and persistent interaction history. |
@@ -60,7 +60,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
-*The API runs at `http://localhost:8000`. Validates schemas and maps DuckDB views on boot.*
+*The API runs at `http://localhost:8000`. Cleans data, validates schemas, and maps DuckDB tables on boot.*
 
 ### 3. Start the Frontend UI
 ```bash

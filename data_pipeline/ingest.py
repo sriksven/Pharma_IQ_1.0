@@ -39,13 +39,26 @@ def load_all_tables(data_dir: str) -> list:
 
         try:
             df = pd.read_csv(filepath)
+
+            # 1. Drop rows missing critical identifiers (columns ending in _id or named id)
+            id_cols = [col for col in df.columns if col.endswith("_id") or col == "id"]
+            if id_cols:
+                df = df.dropna(subset=id_cols)
+
+            # 2 & 3. Impute missing values based on data type
+            for col in df.columns:
+                if pd.api.types.is_numeric_dtype(df[col]):
+                    df[col] = df[col].fillna(0)
+                else:
+                    df[col] = df[col].fillna("Unknown")
+
             row_count = len(df)
             columns = list(df.columns)
             types = {col: str(df[col].dtype) for col in columns}
 
+            # Register the cleaned DataFrame as a DuckDB table
             conn.execute(
-                f"CREATE OR REPLACE VIEW {table_name} AS "
-                f"SELECT * FROM read_csv_auto('{filepath}')"
+                f"CREATE OR REPLACE TABLE {table_name} AS SELECT * FROM df"
             )
 
             tables.append(

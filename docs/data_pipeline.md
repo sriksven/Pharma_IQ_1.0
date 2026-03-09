@@ -2,11 +2,11 @@
 
 ## Overview
 
-Runs at startup and whenever new CSVs are added to `data/raw/`. Registers all CSVs as DuckDB views and writes `data/registry.json`.
+Runs at startup and whenever new CSVs are added to `data/raw/`. Cleans the data, registers all CSVs as DuckDB tables, and writes `data/registry.json`.
 
 ## Steps
 
-1. `ingest.py` - scans `data/raw/`, reads each CSV with pandas, records name, row count, columns, and inferred types. Registers each file as a DuckDB view using `CREATE OR REPLACE VIEW ... AS SELECT * FROM read_csv_auto(...)`.
+1. `ingest.py` - scans `data/raw/`, reads each CSV with pandas, cleans the data (drops missing identifiers, imputes numerics with 0 and text with 'Unknown'), records name, row count, columns, and inferred types. Registers the cleaned data as a DuckDB table using `CREATE OR REPLACE TABLE ... AS SELECT * FROM df`.
 
 2. `validate.py` - checks each table for zero rows, fully null columns, and bad date_id format. Logs warnings without crashing.
 
@@ -16,7 +16,7 @@ Runs at startup and whenever new CSVs are added to `data/raw/`. Registers all CS
 
 ## DuckDB Registration
 
-All CSVs are registered as in-memory views. DuckDB reads the files directly on query. No data is copied or imported.
+All CSVs are read, cleaned via pandas, and registered as in-memory DuckDB tables for querying.
 
 ## Adding New Tables
 

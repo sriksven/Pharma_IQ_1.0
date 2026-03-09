@@ -9,7 +9,7 @@ React + Vite (port 5173)
   |
 FastAPI (port 8000)
   |
-  +-- data_pipeline  -- CSV ingestion, DuckDB registration, registry.json
+  +-- data_pipeline  -- CSV ingestion, data cleaning, registry.json
   +-- chat_pipeline  -- SQL gen, retry, provenance, explain, cache, history
   +-- eval_and_metrics    -- Evals, metrics, structured logging
   +-- voice_pipeline -- STT (Whisper), TTS (OpenAI)
@@ -26,7 +26,7 @@ User question
   |
  Groq openai/gpt-oss-120b: generate SQL
   |
- DuckDB: execute SQL against CSV views
+ DuckDB: execute SQL against clean tables
   |-- Error: feed error back to LLM, retry (up to 3 times)
   |-- Success: continue
   |
@@ -50,7 +50,7 @@ User question
 
 | Store | Purpose |
 |---|---|
-| DuckDB (in-memory) | Query engine over CSV files |
+| DuckDB (in-memory) | Query engine over cleaned tables |
 | data/registry.json | Table schema and FK relationships |
 | SQLite | Sessions, messages, eval results, query metrics |
 | Upstash Redis | Query result cache (1h TTL) |
