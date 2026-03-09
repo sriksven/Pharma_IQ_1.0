@@ -40,3 +40,7 @@ Key events: `query_received`, `cache_hit`, `sql_generated`, `sql_failed`, `sql_r
 - `GET /api/v1/metrics/summary` -- aggregate stats
 - `GET /api/v1/metrics/queries` -- last N queries with latency and LLM info
 - `GET /api/v1/metrics/evals` -- last N eval score records
+
+## Testing (`eval_and_metrics/tests/`)
+*(Run automatically on every Push and Pull Request via `.github/workflows/test.yml`)*
+- The gold dataset evaluation scripts exist within `eval_and_metrics/tests/` to guarantee no pipeline modifications break the standard pharmaceutical query results before CI/CD passes.

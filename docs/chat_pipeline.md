@@ -40,6 +40,12 @@ SQLite persistence. Tables: `sessions`, `messages`, `eval_results`, `query_metri
 - `DELETE /api/v1/sessions/{id}` -- delete session and messages
 - `GET /api/v1/data/csv/{filename}` -- download a raw CSV from `data_pipeline/raw/` as an attachment
 
+## Testing (`chat_pipeline/tests/`)
+*(Run automatically on every Push and Pull Request via `.github/workflows/test.yml`)*
+- `test_sql_validator.py`: Ensures hallucinated tables/columns are caught and syntax is verified.
+- `test_cache.py`: Verifies deterministic hashing (so asking the exact same question doesn't waste LLM tokens).
+- `test_provenance.py`: Tests regex extraction of table names from complex SQL joins to power UI source tags.
+
 ## Conversation Memory
 
 Before each LLM call, the last 6 messages (3 user + 3 assistant turns) from the current session are fetched from SQLite and injected as prior context. This allows the system to correctly handle follow-up questions like:
