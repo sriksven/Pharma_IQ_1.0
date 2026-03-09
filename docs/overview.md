@@ -150,8 +150,10 @@ Let's map out exactly what happens under the hood when a user types (or speaks) 
    - *If Yes*: It returns the saved answer instantly.
    - *If No*: It proceeds to the primary pipeline.
 3. **Context Gathering**: The backend fetches the last 5 chat messages from SQLite to establish multi-turn conversation history.
-4. **Prompt Construction**: The backend merges the user's question, the conversation history, and the complete DuckDB schema registry (tables, columns, types, foreign keys).
-5. **Primary SQL Generation**: The ultra-fast Groq LLM streams back a tentative query:
+4. **Prompt Construction**: The backend merges the user's question, the conversation history, and the complete DuckDB schema registry (`registry.json`) into a massive System Prompt. This json contains all table names, column names, column datatypes, and pre-detected foreign key relationships.
+5. **Primary SQL Generation (The LLM Brain)**: The ultra-fast Groq LLM receives the prompt and acts as a data analyst. 
+   - *How the LLM thinks:* It reads the `registry.json` schema and identifies that the word "doctors" semantically maps exactly to the `hcp_dim` (Healthcare Provider Dimension) table. It sees the user is asking "how many", which it translates mathematically to an aggregation function (`COUNT()`). To ensure it doesn't count duplicates erroneously, it selects the primary key column `hcp_id` from the schema and constructs `COUNT(DISTINCT hcp_id)`.
+   - *Output:* It strictly returns only the SQL string formatting:
    ```sql
    SELECT COUNT(DISTINCT hcp_id) AS total_doctors FROM hcp_dim;
    ```
