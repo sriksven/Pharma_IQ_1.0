@@ -62,3 +62,4 @@ See `.env.example`. Required keys:
 ## Documentation
 
 See `docs/` for detailed documentation on each subsystem.
+- [Future Plan: RLHF](future_rlhf_plan.md)
