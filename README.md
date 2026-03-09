@@ -13,8 +13,8 @@ A natural language analytics assistant over structured pharmaceutical sales data
 | Cache | Upstash Redis |
 | Chat History | SQLite |
 | Charts | Recharts |
-| Voice STT | OpenAI Whisper |
-| Voice TTS | OpenAI TTS |
+| Voice STT | Deepgram Nova-3 |
+| Voice TTS | Deepgram Aura |
 | Voice Transport | LiveKit (WebRTC) |
 | Config | pydantic-settings |
 
@@ -63,6 +63,7 @@ LIVEKIT_URL=wss://pharma-hleoc954.livekit.cloud \
 LIVEKIT_API_KEY=APIUC22RKvcMQW9 \
 LIVEKIT_API_SECRET=Bd8iGautRwGF0Jlm5fOwonvbByU5NEHC2Mgz7nJ9VNC \
 OPENAI_API_KEY=... \
+DEEPGRAM_API_KEY=... \
     python -m voice_pipeline.livekit_agent dev
 ```
 
@@ -118,7 +119,8 @@ See `.env.example` for all required keys. Key variables:
 | Variable | Description |
 |---|---|
 | `GROQ_API_KEY` | Groq API key for SQL generation |
-| `OPENAI_API_KEY` | OpenAI key for Whisper STT and TTS |
+| `OPENAI_API_KEY` | OpenAI key for REST STT/TTS fallback |
+| `DEEPGRAM_API_KEY` | Deepgram API key for LiveKit STT/TTS |
 | `UPSTASH_REDIS_URL` | Upstash Redis URL for query caching |
 | `UPSTASH_REDIS_TOKEN` | Upstash Redis token |
 | `DATA_DIR` | Absolute path to CSV directory |

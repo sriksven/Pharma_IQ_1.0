@@ -5,6 +5,7 @@ import Sidebar from '../components/layout/Sidebar'
 import ChatThread from '../components/chat/ChatThread'
 import InputBar from '../components/chat/InputBar'
 import ErrorBanner from '../components/common/ErrorBanner'
+import VoiceOverlay from '../components/voice/VoiceOverlay'
 import { sendMessage, getSession } from '../api/client'
 import styles from './ChatPage.module.css'
 
@@ -14,6 +15,7 @@ export default function ChatPage() {
     const [messages, setMessages] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+    const [showVoiceOverlay, setShowVoiceOverlay] = useState(false)
 
     useEffect(() => {
         const sid = searchParams.get('session')
@@ -59,6 +61,7 @@ export default function ChatPage() {
             }
 
             const assistantMsg = {
+                id: response.message_id,
                 role: 'assistant',
                 content: response.answer,
                 sql_query: response.sql,
@@ -85,6 +88,7 @@ export default function ChatPage() {
             setMessages((prev) => [
                 ...prev,
                 {
+                    id: msg.message_id,
                     role: 'assistant',
                     content: msg.text,
                     sql_query: msg.sql || null,
@@ -110,9 +114,22 @@ export default function ChatPage() {
                 <main className={styles.main}>
                     <ErrorBanner message={error} onDismiss={() => setError(null)} />
                     <ChatThread messages={messages} loading={loading} />
-                    <InputBar onSubmit={handleSubmit} disabled={loading} sessionId={sessionId} onVoiceMessage={handleVoiceMessage} />
+                    <InputBar
+                        onSubmit={handleSubmit}
+                        disabled={loading}
+                        sessionId={sessionId}
+                        onVoiceClick={() => setShowVoiceOverlay(true)}
+                    />
                 </main>
             </div>
+
+            {showVoiceOverlay && (
+                <VoiceOverlay
+                    sessionId={sessionId}
+                    onClose={() => setShowVoiceOverlay(false)}
+                    onVoiceMessage={handleVoiceMessage}
+                />
+            )}
         </div>
     )
 }

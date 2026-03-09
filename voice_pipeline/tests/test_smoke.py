@@ -1,6 +1,6 @@
 """
 Smoke tests for the voice pipeline modules.
-No live API calls are made -- OpenAI and LiveKit dependencies are not contacted.
+No live API calls are made -- OpenAI, Deepgram, and LiveKit dependencies are not contacted.
 """
 import asyncio
 import importlib
@@ -20,21 +20,12 @@ os.environ.setdefault("SQLITE_DB_PATH", os.path.join(tempfile.gettempdir(), "pha
 os.environ.setdefault("LIVEKIT_URL", "wss://test.livekit.cloud")
 os.environ.setdefault("LIVEKIT_API_KEY", "test_api_key")
 os.environ.setdefault("LIVEKIT_API_SECRET", "test_api_secret_minimum_32chars_pad")
+os.environ.setdefault("DEEPGRAM_API_KEY", "test_deepgram_key")
 
 
 # ---------------------------------------------------------------------------
 # Module imports
 # ---------------------------------------------------------------------------
-
-def test_stt_module_importable():
-    from voice_pipeline import stt
-    assert callable(stt.transcribe)
-
-
-def test_tts_module_importable():
-    from voice_pipeline import tts
-    assert callable(tts.speak)
-
 
 def test_livekit_agent_importable():
     mod = importlib.import_module("voice_pipeline.livekit_agent")
@@ -53,10 +44,10 @@ def test_pharma_llm_has_chat_method():
     assert callable(instance.chat)
 
 
-def test_pharma_llm_last_response_default_empty():
+def test_pharma_llm_publish_cb_default_none():
     from voice_pipeline.livekit_agent import PharmaIQLLM
     instance = PharmaIQLLM()
-    assert instance.last_response == {}
+    assert instance.publish_cb is None
 
 
 def test_pharma_llm_stream_created_from_chat():

@@ -16,3 +16,4 @@ sqlalchemy==2.0.30
 python-multipart==0.0.9
 livekit-api>=0.7.0
 livekit-agents[openai,silero]>=1.0.0
+livekit-plugins-deepgram>=0.6.0

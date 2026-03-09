@@ -3,7 +3,7 @@
 Real-time voice interface for PharmaIQ powered by [LiveKit](https://livekit.io/).
 
 ```
-user speaks → Silero VAD → Whisper STT → PharmaIQ chat pipeline → OpenAI TTS → user hears
+user speaks → Silero VAD → Deepgram STT → PharmaIQ chat pipeline → Deepgram TTS → user hears
 ```
 
 Transcripts appear in the chat thread alongside text messages. SQL, provenance tags, and chart hints are forwarded through the WebRTC data channel so voice turns look the same as typed ones.
@@ -39,9 +39,10 @@ Add the following to your `.env` file in the project root:
 LIVEKIT_URL=wss://your-project.livekit.cloud
 LIVEKIT_API_KEY=your_key
 LIVEKIT_API_SECRET=your_secret
+DEEPGRAM_API_KEY=your_deepgram_key
 ```
 
-`OPENAI_API_KEY` must also be set (already required by the rest of the app).
+`OPENAI_API_KEY` must also be set for REST fallback routes.
 
 ---
 
@@ -51,7 +52,7 @@ Start the LiveKit worker in a separate terminal **alongside** the FastAPI backen
 
 ```bash
 LIVEKIT_URL=wss://... LIVEKIT_API_KEY=... LIVEKIT_API_SECRET=... \
-OPENAI_API_KEY=... \
+DEEPGRAM_API_KEY=... OPENAI_API_KEY=... \
     python -m voice_pipeline.livekit_agent dev
 ```
 
@@ -81,9 +82,9 @@ PHARMAIQ_CHAT_URL=http://my-backend:8000/api/v1/chat \
 5. The agent worker picks up the room job automatically.
 6. **Voice loop:**
    - Silero VAD detects the end of an utterance.
-   - Whisper transcribes the audio.
+   - Deepgram STT transcribes the audio.
    - The agent calls `POST /api/v1/chat` with the transcript, tied to the same `session_id` as the text chat.
-   - The answer is spoken aloud via OpenAI TTS.
+   - The answer is spoken aloud via Deepgram TTS.
    - Both the user transcript and assistant answer are sent over the data channel so they appear in the chat thread immediately.
 7. User clicks the mic button again to disconnect.
 

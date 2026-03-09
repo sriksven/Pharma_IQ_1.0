@@ -5,7 +5,7 @@ Also exposes a function to load the registry back from disk.
 
 import json
 import os
-from datetime import datetime
+from datetime import datetime, UTC
 
 from data_pipeline.relationship_detector import detect_relationships
 
@@ -28,7 +28,7 @@ def build_registry(tables: list, data_dir: str) -> dict:
             for t in tables
         ],
         "relationships": relationships,
-        "loaded_at": datetime.utcnow().isoformat(),
+        "loaded_at": datetime.now(UTC).isoformat(),
     }
 
     os.makedirs(os.path.dirname(REGISTRY_PATH), exist_ok=True)

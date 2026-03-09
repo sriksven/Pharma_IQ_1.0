@@ -4,12 +4,12 @@ Structured JSON logger used across all pipeline modules.
 
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, UTC
 
 
 class JSONLogger:
     def log(self, event: str, data: dict):
-        record = {"event": event, "data": data, "ts": datetime.utcnow().isoformat()}
+        record = {"event": event, "data": data, "ts": datetime.now(UTC).isoformat()}
         dump = json.dumps(record)
         print(dump, file=sys.stderr)
         

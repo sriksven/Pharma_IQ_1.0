@@ -1,40 +1,24 @@
 .voiceBtn {
     flex-shrink: 0;
+    background: none;
+    border: none;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border);
-    background: var(--bg);
-    color: var(--text-faint);
     cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-    padding: 0;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    margin-left: 8px;
 }
 
 .voiceBtn:hover:not(:disabled) {
-    background: var(--surface);
-    color: var(--text);
-    border-color: var(--accent);
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--accent, #007bff);
 }
 
 .voiceBtn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* Active (mic on) — accent ring */
-.voiceBtn.active {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 10%, var(--bg));
-    color: var(--accent);
-}
-
-/* Pulsing animation for active state */
-.voiceBtn.active::after {
-    content: '';
     position: absolute;
     inset: 0;
     border-radius: inherit;
@@ -47,8 +31,15 @@
 }
 
 @keyframes voice-pulse {
-    0%   { opacity: 0.6; transform: scale(1); }
-    100% { opacity: 0;   transform: scale(1.6); }
+    0% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.6);
+    }
 }
 
 /* Connecting dots */
@@ -60,5 +51,7 @@
 }
 
 @keyframes blink {
-    50% { opacity: 0.2; }
+    50% {
+        opacity: 0.2;
+    }
 }
