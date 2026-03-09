@@ -4,7 +4,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## 📊 Prescription Volumes
+##  Prescription Volumes
 
 **1. What is the total NRx count across all HCPs?**
 > ~8,322 new prescriptions across all HCPs and time periods.
@@ -38,7 +38,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## 👨‍⚕️ HCP / Doctor Questions
+##  HCP / Doctor Questions
 
 **11. How many unique doctors are in the database?**
 > 90 HCPs total.
@@ -72,7 +72,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## 🧑‍💼 Sales Rep Activity
+##  Sales Rep Activity
 
 **21. How many total rep activities are recorded?**
 > 2,962 total activities across all reps.
@@ -106,7 +106,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## 💊 Payer / Market Access
+##  Payer / Market Access
 
 **31. What payer types are in the dataset?**
 > Four: Medicare, Medicaid, Commercial, Other.
@@ -125,7 +125,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## 🏥 Account Questions
+##  Account Questions
 
 **36. How many accounts are in the database?**
 > 24 accounts total.
@@ -144,7 +144,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## 📈 Launch Metrics
+##  Launch Metrics
 
 **41. What entity types are tracked in launch metrics?**
 > Two: `A` (Account-level) and `H` (HCP-level).
@@ -163,7 +163,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## 📅 Time-Based Questions
+##  Time-Based Questions
 
 **46. What date range does the data cover?**
 > The date_dim spans from 2024-08-01 through the most recent date loaded (~18 months of data based on 518 rows).
@@ -182,7 +182,7 @@ These are example questions you can ask PharmaIQ in the chat UI, along with the 
 
 ---
 
-## ❌ Questions the System Cannot Answer
+##  Questions the System Cannot Answer
 
 The following will result in a polite "I don't have that information" response:
 

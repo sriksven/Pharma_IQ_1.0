@@ -1,4 +1,4 @@
-# 🧬 PharmaIQ 1.0
+#  PharmaIQ 1.0
 
 ![PharmaIQ Banner](https://img.shields.io/badge/PharmaIQ-1.0-blue?style=for-the-badge) ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python) ![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react) ![FastAPI](https://img.shields.io/badge/FastAPI-0.103+-009688?style=for-the-badge&logo=fastapi) ![DuckDB](https://img.shields.io/badge/DuckDB-Fast-yellow?style=for-the-badge)
 
@@ -8,27 +8,27 @@ The platform features a modern React frontend, a ChatGPT-style real-time voice i
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-- 🗣️ **Real-Time Voice UI**: A highly responsive, full-screen audio interface using **Deepgram Nova-3 / Aura** and **LiveKit** WebRTC. Speak to the agent and hear instant, contextual responses.
-- ⚡ **Lightning Fast Analytics**: Uses **Groq's Llama 3 70B** to generate SQL in milliseconds, executing it instantly against **DuckDB**. 
-- 🛡️ **Self-Healing SQL**: If Groq hallucinates a column, an autonomous **OpenAI GPT-4o** fallback agent steps in to debug and correct the query seamlessly.
-- 📁 **Dynamic Data Uploads**: Drag and drop new `.csv` datasets (like Prescriptions, Rep Activity, HCPs) directly into the UI. The backend automatically maps the schema to DuckDB—no server restart required.
-- 📈 **Smart Data Viz**: Automatically interprets query outputs to generate Recharts-powered KPIs, Bar Charts, and Tables.
-- 🔄 **Evaluation & RLHF Ready**: Every interaction is evaluated for faithfulness and relevance by an LLM judge, and user Feedback (+1/-1) is collected to prep for future **Direct Preference Optimization (DPO)** fine-tuning.
+-  **Real-Time Voice UI**: A highly responsive, full-screen audio interface using **Deepgram Nova-3 / Aura** and **LiveKit** WebRTC. Speak to the agent and hear instant, contextual responses.
+-  **Lightning Fast Analytics**: Uses **Groq's Llama 3 70B** to generate SQL in milliseconds, executing it instantly against **DuckDB**. 
+-  **Self-Healing SQL**: If Groq hallucinates a column, an autonomous **OpenAI GPT-4o** fallback agent steps in to debug and correct the query seamlessly.
+-  **Dynamic Data Uploads**: Drag and drop new `.csv` datasets (like Prescriptions, Rep Activity, HCPs) directly into the UI. The backend automatically maps the schema to DuckDB—no server restart required.
+-  **Smart Data Viz**: Automatically interprets query outputs to generate Recharts-powered KPIs, Bar Charts, and Tables.
+-  **Evaluation & RLHF Ready**: Every interaction is evaluated for faithfulness and relevance by an LLM judge, and user Feedback (+1/-1) is collected to prep for future **Direct Preference Optimization (DPO)** fine-tuning.
 
 ---
 
-## 📚 Documentation
+##  Documentation
 For a deep dive into the architecture, multi-LLM routing, testing strategies, and a step-by-step breakdown of how a user question turns into a chart, please read the comprehensive overview:
 
-👉 **[Read the Full Technical Overview & Architecture Guide](docs/overview.md)**
+ **[Read the Full Technical Overview & Architecture Guide](docs/overview.md)**
 
-👉 **[View the RLHF Fine-Tuning Future Plan](docs/future_rlhf_plan.md)**
+ **[View the RLHF Fine-Tuning Future Plan](docs/future_rlhf_plan.md)**
 
 ---
 
-## 🛠️ The Tech Stack
+##  The Tech Stack
 
 | Layer | Technology | Purpose |
 |---|---|---|
@@ -42,7 +42,7 @@ For a deep dive into the architecture, multi-LLM routing, testing strategies, an
 
 ---
 
-## 🚀 Quick Start (Local Development)
+##  Quick Start (Local Development)
 
 ### 1. Clone & Configure
 ```bash
@@ -78,7 +78,7 @@ DEEPGRAM_API_KEY=your_key LIVEKIT_URL=your_wss LIVEKIT_API_KEY=your_key LIVEKIT_
 
 ---
 
-## 🧪 Running Evaluations & Tests
+##  Running Evaluations & Tests
 The project features a strict **"Gold Eval"** regression suite to ensure new LLMs or code modifications do not degrade SQL generation accuracy. 
 
 To run the entire suite (Data Pipeline, Chat Pipeline, Validators, and Voice Smoke Tests):

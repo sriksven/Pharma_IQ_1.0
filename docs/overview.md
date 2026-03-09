@@ -100,7 +100,7 @@ Because SQL correctness doesn't always guarantee a *good human answer*, the syst
 * **Avg Faithfulness:** *How:* The judge strictly compares the raw JSON output of the SQL query against the final English answer. *Why:* This is a critical hallucination check. If the SQL returned `[{"sales": 500}]` but the English answer claims "Sales were 1,500", the faithfulness score tanks to 0.
 
 ### C. User Satisfaction (RLHF Data)
-* **Thumbs Up 👍 / Thumbs Down 👎:** Calculated strictly from the user's clicks on the frontend UI. *Why:* This serves as explicit human preference data. If an answer gets a Thumbs Down despite having a 10/10 Judge score, it indicates our prompt engineering or Golden Dataset is flawed. This raw data feeds directly into our future **Direct Preference Optimization (DPO)** pipeline to fine-tune open-source models (see Section 7).
+* **Thumbs Up  / Thumbs Down :** Calculated strictly from the user's clicks on the frontend UI. *Why:* This serves as explicit human preference data. If an answer gets a Thumbs Down despite having a 10/10 Judge score, it indicates our prompt engineering or Golden Dataset is flawed. This raw data feeds directly into our future **Direct Preference Optimization (DPO)** pipeline to fine-tune open-source models (see Section 7).
 
 ### D. The "Gold Eval" (Offline Regression Testing)
 * **What it is:** A Python test suite (`eval/golden_dataset.py`) containing hundreds of complex "Gold Standard" pharmaceutical questions, paired perfectly with their known, human-verified SQL queries.
