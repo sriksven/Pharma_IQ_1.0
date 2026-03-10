@@ -17,9 +17,11 @@ class Settings(BaseSettings):
     livekit_url: str = ""
     livekit_api_key: str = ""
     livekit_api_secret: str = ""
+    deepgram_api_key: str = ""
 
     class Config:
         env_file = _ENV_FILE
+        extra = "ignore"
 
 
 settings = Settings()

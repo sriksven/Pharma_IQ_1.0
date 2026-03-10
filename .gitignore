@@ -47,3 +47,6 @@ frontend/.vite/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# PID files
+*.pid
